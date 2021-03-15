@@ -2,7 +2,7 @@ package com.example.my11
 
 data class Match (
     val creditsLeft: Int,
-    val provider:Provider,
+    val provider:Provider, 
     val ttl:Int,
     val v:Int,
     val cache:Boolean,
