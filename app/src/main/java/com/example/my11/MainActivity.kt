@@ -19,12 +19,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getMatch() {
-         val res=RetrofitInstance.cricInstance.matchCalender()
+         val res=RetrofitInstance.cricInstance.matchCalender(1)
         res.enqueue(object : retrofit2.Callback<Match>{
             override fun onResponse(call: Call<Match>, response: Response<Match>) {
                   val result=response.body()
 
-                    Log.i("ankit",result.toString())
+                    Log.i("ankit",response.toString())
             }
 
             override fun onFailure(call: Call<Match>, t: Throwable) {
