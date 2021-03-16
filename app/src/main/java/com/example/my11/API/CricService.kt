@@ -5,6 +5,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 const val BASE_URL="https://cricapi.com/api/"
@@ -14,7 +15,7 @@ interface CricService {
 //    https://cricapi.com/api/matchCalendar?apikey=NVvSuM2OIwPanROYT8QS2Y4ihwm1
     @GET("matchCalendar?apikey=$API_KEY")
 
-    fun  matchCalender():Call<Match>
+    fun  matchCalender(@Query("page") page:Int):Call<Match>
 
 }
  object RetrofitInstance{
