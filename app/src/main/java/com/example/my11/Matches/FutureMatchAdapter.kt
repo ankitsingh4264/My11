@@ -29,8 +29,8 @@ class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
         with(itemView){
             team1.text=data.team1
             team2.text=data.team2
-            date.text=getdate(data.dateTimeGMT)
-            time.text=gettime(data.dateTimeGMT)
+            date_text_view.text=getdate(data.dateTimeGMT)
+            time_text_view.text=gettime(data.dateTimeGMT)
         }
 
     }
@@ -40,7 +40,7 @@ class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
     }
 
     private fun getdate(dateTimeGMT: String): CharSequence? {
-            return dateTimeGMT.substring(0,9)
+            return dateTimeGMT.substring(0,10)
     }
 
 }
