@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Home"
-        android:id="@+id/futureMatchFragment"
+        android:id="@+id/liveMatchFragment"
         android:icon="@drawable/ic_home_24" />
     <item android:title="Play"
-        android:id="@+id/fragment1"
+        android:id="@+id/futureMatchFragment"
         android:icon="@drawable/ic_sports_cricket_24" />
     <item android:title="Profile"
         android:id="@+id/fragment2"

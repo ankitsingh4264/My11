@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.list_of_future_match.view.*
 
 class LiveMatchAdapter(val list: ArrayList<Matche>) : RecyclerView.Adapter<viewholder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
-        return viewholder(LayoutInflater.from(parent.context).inflate(R.layout.list_of_future_match,parent,false))
+        return viewholder(LayoutInflater.from(parent.context).inflate(R.layout.list_of_live_match,parent,false))
     }
 
     override fun getItemCount(): Int {
