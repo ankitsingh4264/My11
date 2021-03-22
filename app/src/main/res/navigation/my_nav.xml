@@ -25,4 +25,14 @@
         android:name="com.example.my11.Matches.Fragment2"
         android:label="fragment_2"
         tools:layout="@layout/fragment_2" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.my11.Matches.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/playedMatchFragment"
+        android:name="com.example.my11.Matches.PlayedMatchFragment"
+        android:label="fragment_played_match"
+        tools:layout="@layout/fragment_played_match" />
 </navigation>
