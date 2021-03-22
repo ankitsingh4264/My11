@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,29 +10,27 @@
     tools:context=".Matches.HomeFragment">
 
 
-
-
     <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
         android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab_1"
             android:text="Upcoming" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab_2"
             android:text="Live" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tab_3"
             android:text="Played" />
     </com.google.android.material.tabs.TabLayout>
     <androidx.viewpager.widget.ViewPager

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/autour_one</item>
         <item>@font/baloo</item>
         <item>@font/bangers</item>
         <item>@font/lato_black</item>
         <item>@font/montserrat_bold</item>
+        <item>@font/open_sans_bold</item>
+        <item>@font/open_sans_extrabold</item>
         <item>@font/passion_one_bold</item>
     </array>
 </resources>

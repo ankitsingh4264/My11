@@ -59,11 +59,16 @@ class viewholder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 
     private fun gettime(dateTimeGMT: String): String? {
-        return dateTimeGMT.substring(11,20)
+        return getTime12hour(dateTimeGMT.substring(11,20))
+    }
+
+    private fun getTime12hour(t: String): String? {
+        val hr=t.substring(0,2).toInt()
+        return ((hr % 12).toString() + ":" + t.substring(3,5) + " " + if (hr >= 12) "PM" else "AM")
     }
 
     private fun getdate(dateTimeGMT: String): String? {
-        return dateTimeGMT.substring(0,10)
+        return dateTimeGMT.substring(0, 10)
     }
 
     private fun getfulldateinUTC(dateTimeGMT: String): String? {
