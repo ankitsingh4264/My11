@@ -8,6 +8,7 @@
 
 
 
+
     <fragment
         android:id="@+id/hostfragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
