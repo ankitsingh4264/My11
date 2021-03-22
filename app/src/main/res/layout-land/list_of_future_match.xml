@@ -14,13 +14,13 @@
             android:id="@+id/team1"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="#000000"
-            android:textSize="15sp">
+            android:fontFamily="@font/baloo"
+            android:textColor="#E40C0C"
+            android:textSize="20sp">
 
         </TextView>
 
@@ -35,10 +35,10 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:fadingEdge="none"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/baloo"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="15sp">
+            android:textColor="#E40C0C"
+            android:textSize="20sp">
 
         </TextView>
 
@@ -67,7 +67,7 @@
             android:layout_marginBottom="78dp"
             android:layout_marginEnd="125dp"
             android:background="@drawable/down_trapizium"
-            android:textColor="#000000"
+            android:textColor="#E40C0C"
             android:textSize="15sp">
 
             <TextView
@@ -94,14 +94,14 @@
             android:layout_marginTop="78dp"
 
             android:layout_marginEnd="145dp"
-            android:textColor="#000000"
+            android:textColor="#E40C0C"
             android:textSize="15sp">
             <TextView
                 android:id="@+id/time_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:textColor="#000000"
+                android:textColor="#E40C0C"
                 android:textSize="15sp">
 
             </TextView>

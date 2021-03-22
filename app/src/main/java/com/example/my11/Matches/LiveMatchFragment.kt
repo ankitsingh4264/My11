@@ -49,7 +49,7 @@ class LiveMatchFragment : Fragment() {
                 //Log.i("raj", result.toString())
 
                 for (i in 0..result!!.size - 1) {
-                    if (result?.get(i).matchStarted) {
+                    if (result?.get(i).matchStarted && result?.get(i).winner_team.equals("")) {
                         LiveMatch.add(result?.get(i))
                     }
                 }
