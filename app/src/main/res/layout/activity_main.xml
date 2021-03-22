@@ -10,12 +10,23 @@
 
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/hostfragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+       android:layout_above="@+id/bottomNav"
         app:defaultNavHost="true"
         app:navGraph="@navigation/my_nav"
        />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:menu="@menu/bottom_menu"
+
+        ></com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </RelativeLayout>
