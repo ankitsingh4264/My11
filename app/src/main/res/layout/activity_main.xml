@@ -7,17 +7,46 @@
     tools:context=".MainActivity">
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+       android:id="@+id/appb"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="130dp"
+
+            android:background="@drawable/dream11">
+
+        </ImageView>
+    </androidx.appcompat.widget.Toolbar>
+
+</com.google.android.material.appbar.AppBarLayout>
 
 
-    <fragment
+<fragment
         android:id="@+id/hostfragment"
+    android:layout_below="@+id/appb"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:layout_above="@+id/bottomNav"
+        android:layout_above="@+id/bottomNav"
+        android:layout_marginTop="5dp"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/my_nav"
-       />
+        app:navGraph="@navigation/my_nav" />
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_alignParentBottom="true"
@@ -27,6 +56,9 @@
         app:menu="@menu/bottom_menu"
 
         ></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
 
 
 </RelativeLayout>
