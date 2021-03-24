@@ -33,7 +33,7 @@ class LiveMatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         LiveMatch = ArrayList()
-
+        Log.i("raj","dada")
         recycler_live_match.layoutManager= LinearLayoutManager(context)
 
         getMatch()

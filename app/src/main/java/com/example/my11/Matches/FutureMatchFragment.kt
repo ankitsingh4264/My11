@@ -23,6 +23,7 @@ class FutureMatchFragment : Fragment() {
 
     lateinit var FutureMatch:ArrayList<Matche>
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
