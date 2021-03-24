@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
@@ -25,8 +24,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_centerInParent="true"
-            android:layout_marginHorizontal="130dp"
-
+            android:layout_gravity="center"
             android:background="@drawable/dream11">
 
         </ImageView>
