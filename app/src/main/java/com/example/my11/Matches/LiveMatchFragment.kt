@@ -34,10 +34,12 @@ class LiveMatchFragment : Fragment() {
 
         LiveMatch = ArrayList()
         Log.i("raj","dada")
+
         recycler_live_match.layoutManager= LinearLayoutManager(context)
 
         getMatch()
     }
+
 
     private fun getMatch() {
 
