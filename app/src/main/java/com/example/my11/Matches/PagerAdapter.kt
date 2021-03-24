@@ -21,4 +21,6 @@ class PageAdapter(fm: FragmentManager, var tabcount: Int) :
     override fun getCount(): Int {
         return tabcount
     }
+
+
 }

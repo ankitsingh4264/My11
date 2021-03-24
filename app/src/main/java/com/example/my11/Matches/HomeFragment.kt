@@ -1,6 +1,7 @@
 package com.example.my11.Matches
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +27,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pageAdapter= PageAdapter(parentFragmentManager, tab_layout.tabCount)
+        val pageAdapter= PageAdapter(childFragmentManager, tab_layout.tabCount)
         view_pager.adapter=pageAdapter
+        pageAdapter.notifyDataSetChanged()
+
+
 
            // selection on clicking of tab
         tab_layout.addOnTabSelectedListener(object : OnTabSelectedListener {
@@ -40,6 +44,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
+
             }
 
 
