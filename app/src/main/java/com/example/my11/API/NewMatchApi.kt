@@ -18,6 +18,8 @@ interface NewMatchApi {
 
     fun  matches(@Query("page") page:Int): Call<NewMatch>
 
+
+
 }
 object RetrofitInstance_NewMatch{
     val cricInstanceforNewMatchApi:NewMatchApi

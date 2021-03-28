@@ -35,4 +35,9 @@
         android:name="com.example.my11.Matches.PlayedMatchFragment"
         android:label="fragment_played_match"
         tools:layout="@layout/fragment_played_match" />
+    <fragment
+        android:id="@+id/play"
+        android:name="com.example.my11.Players.Play"
+        android:label="fragment_play"
+        tools:layout="@layout/fragment_play" />
 </navigation>

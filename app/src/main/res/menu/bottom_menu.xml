@@ -6,7 +6,7 @@
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home_24" />
     <item android:title="Play"
-        android:id="@+id/fragment1"
+        android:id="@+id/play"
         android:icon="@drawable/ic_sports_cricket_24" />
     <item android:title="Profile"
         android:id="@+id/fragment2"
