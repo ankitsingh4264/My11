@@ -1,14 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Players.Play">
+    android:id="@+id/cardView"
+    android:layout_margin="5dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="150dp"
+        android:background="@drawable/one_sided_rounded_corner">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/team1"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="30dp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="#000000"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/team2"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="30dp"
+            android:fadingEdge="none"
+            android:fontFamily="@font/open_sans_bold"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="20sp">
+
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/versus"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="166dp"
+            android:layout_marginEnd="166dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/vs">
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/main_team_1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/main"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/faded_one_side">
+
+        <TextView
+            android:id="@+id/name_team_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/status_of_team_1"
+        android:layout_below="@+id/main_team_1"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="30dp">
+
+        <TextView
+            android:id="@+id/name1"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="Name"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="45dp"></TextView>
+
+        <TextView
+            android:id="@+id/batsr"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/name1"
+            android:text="Batsr"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginLeft="195dp"></TextView>
+        <TextView
+            android:id="@+id/bowlsr"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/name1"
+            android:text="Bowlsr"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginLeft="260dp"></TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/details_of_team_1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/status_of_team_1"
+        android:layout_marginVertical="5dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_team_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_team_2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/details_of_team_1"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/faded_one_side">
+        <TextView
+            android:id="@+id/name_team_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="#000000"
+            android:textSize="18sp">
+
+        </TextView>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/status_of_team_2"
+        android:layout_below="@+id/main_team_2"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="30dp">
+
+        <TextView
+            android:id="@+id/name2"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/image_of_player"
+            android:text="Name"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="45dp"></TextView>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="195dp"
+            android:layout_alignLeft="@+id/name2"
+            android:gravity="center"
+            android:text="Batsr"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="260dp"
+            android:gravity="center"
+            android:layout_alignLeft="@+id/name2"
+            android:text="Bowlsr"
+            android:textSize="15sp"></TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/details_of_team_2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/status_of_team_2"
+        android:layout_marginVertical="5dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_team_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

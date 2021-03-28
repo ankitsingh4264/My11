@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="30dp"
     android:id="@+id/cardView"
     android:layout_margin="5dp">
 
     <RelativeLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/new_match_cardview">
 
-    <RelativeLayout
-        android:id="@+id/main_team_1"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@+id/main"
-        android:layout_marginVertical="5dp">
+        <ImageView
+            android:id="@+id/image_of_player"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="3dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/name_of_player"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/image_of_player"
+            android:text="Virat Kohli"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="45dp"></TextView>
+
+        <TextView
+            android:id="@+id/batsr"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/name_of_player"
+            android:text="0.08"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginLeft="195dp"></TextView>
+        <TextView
+            android:id="@+id/bowlsr"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/name_of_player"
+            android:text="54.23"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_marginLeft="260dp"></TextView>
+
     </RelativeLayout>
-    
-    <RelativeLayout
-        android:layout_width=""
-        android:layout_height=""
-        
-    
 
 </RelativeLayout>

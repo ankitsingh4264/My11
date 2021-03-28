@@ -8,6 +8,7 @@
         <item>@font/montserrat_bold</item>
         <item>@font/open_sans_bold</item>
         <item>@font/open_sans_extrabold</item>
+        <item>@font/open_sans_semibold</item>
         <item>@font/passion_one_bold</item>
     </array>
 </resources>
