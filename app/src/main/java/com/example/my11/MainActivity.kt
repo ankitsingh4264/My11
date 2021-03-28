@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
+import com.example.my11.DataClass.Squad
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         val navController=findNavController(R.id.hostfragment);
         bottomNav.setupWithNavController(navController);
 
+           Repository().getSquad("1243394")
 
     }
 
@@ -38,4 +40,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        })
 //    }
+
+
 }
