@@ -11,5 +11,25 @@ data class Team(
 data class Players(
     val pid:String,
     val name:String,
-    val playingRole:String?
+    val playingRole:String?,
+    val data:data,
+    val imageURL:String?
+
+)
+data class data(
+    val bowling:playType,
+    val batting:playType
+)
+data class playType(
+        val listA:playDetail,
+        val firstClass:playDetail,
+        val T20Is:playDetail,
+        val ODIs:playDetail,
+        val tests:playDetail,
+
+)
+data class playDetail(
+        val Wkts:String?="0",
+        val Mat :String="0",
+        val Runs:String?="0"
 )

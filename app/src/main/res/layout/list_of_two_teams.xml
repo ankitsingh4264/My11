@@ -10,12 +10,12 @@
         android:layout_height="match_parent"
         android:background="@drawable/new_match_cardview">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_of_player"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_margin="3dp">
-        </ImageView>
+            android:layout_margin="3dp"
+        />
 
         <TextView
             android:id="@+id/name_of_player"
@@ -23,6 +23,7 @@
             android:layout_height="match_parent"
             android:layout_alignLeft="@+id/image_of_player"
             android:text="Virat Kohli"
+            android:maxLines="1"
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginLeft="45dp"></TextView>

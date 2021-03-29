@@ -45,16 +45,24 @@ class Repository {
 
             playres.enqueue(object : retrofit2.Callback<Players>{
                 override fun onResponse(call: Call<Players>, response: Response<Players>) {
+                                val p: Players? =response.body()
 
-                                arr.add(Players(player.pid,player.name,
-                                    response.body()?.playingRole
-                                ))
+
+
+                                  arr.add(p!!)
+                                    Log.i("ankit",""+ arr.size+" "+players.size)
+
+//                                arr.add(Players(player.pid,player.name,
+//                                    response.body()?.playingRole,response.body().bowling,response.bo
+//                                ))
                                 if (arr.size==players.size) {
+
                                     res.value=arr;
                                 }
 
                 }
                 override fun onFailure(call: Call<Players>, t: Throwable) {
+                    Log.i("ankit",t.message.toString())
 
                     }
             })
