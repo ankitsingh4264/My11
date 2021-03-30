@@ -12,6 +12,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_of_player"
+            android:background="@drawable/ic_person_24"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="3dp"

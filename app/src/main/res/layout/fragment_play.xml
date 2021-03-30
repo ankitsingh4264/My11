@@ -5,6 +5,18 @@
     android:id="@+id/cardView"
     android:layout_margin="5dp">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -203,6 +215,8 @@
             android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
+    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 
