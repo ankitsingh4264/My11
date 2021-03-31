@@ -9,38 +9,61 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_virat"
-        android:backgroundTintMode="multiply"
-        android:backgroundTint="#CD4E4E"
-        >
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:backgroundTintMode="multiply">
 
+        <ImageView
+            android:id="@+id/logo_my_11"
+            android:layout_width="65dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/text_my_11"
+            android:background="@drawable/logo_my_11">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/text_my_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="128dp"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="MY 11"
+            android:textColor="#730202"
+            android:textSize="30sp">
+
+        </TextView>
 
         <RelativeLayout
             android:id="@+id/login_google"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/new_match_cardview">
+            android:layout_height="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/new_match_cardview"
+            android:layout_marginHorizontal="20dp"
+            android:layout_alignParentBottom="true">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignLeft="@+id/text_google"
-                android:layout_centerHorizontal="true"
+                android:id="@+id/img_google"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="-53dp"
                 android:background="@drawable/google_logo"></ImageView>
 
             <TextView
                 android:id="@+id/text_google"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/img_google"
+                android:text="Sign in with Google"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="128dp"
-                android:text="GOOGLE"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textColor="#730202"
+                android:textSize="15sp"
                 android:textStyle="bold">
 
             </TextView>
