@@ -1,53 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="30dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
-    android:layout_margin="5dp">
+    android:layout_marginVertical="1dp"
+    android:layout_marginHorizontal="1dp">
 
-    <RelativeLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/team_players_card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/new_match_cardview">
+        android:backgroundTint="@color/baby_yellow"
+
+        android:layout_height="wrap_content"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginVertical="4dp"
+            android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_of_player"
-            android:background="@drawable/ic_person_24"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="3dp"
         />
 
         <TextView
             android:id="@+id/name_of_player"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="15"
             android:layout_alignLeft="@+id/image_of_player"
             android:text="Virat Kohli"
             android:maxLines="1"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="45dp"></TextView>
 
         <TextView
             android:id="@+id/batsr"
             android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignLeft="@+id/name_of_player"
+            android:layout_height="wrap_content"
+
             android:text="0.08"
-            android:textSize="15sp"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:layout_marginLeft="195dp"></TextView>
+            android:layout_toLeftOf="@+id/bowlsr"
+            android:layout_marginRight="10dp"></TextView>
         <TextView
             android:id="@+id/bowlsr"
             android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignLeft="@+id/name_of_player"
-            android:text="54.23"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:layout_marginLeft="260dp"></TextView>
+            android:layout_height="wrap_content"
 
-    </RelativeLayout>
+            android:text="54.23"
+            android:textSize="17sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_toLeftOf="@+id/img_add"
+            android:layout_marginRight="10dp"
+            ></TextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="40dp"
+            android:id="@+id/img_add"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/remove_circle"
+
+            ></de.hdodenhof.circleimageview.CircleImageView>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>
