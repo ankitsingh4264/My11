@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_play" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.my11.LoginFragment"
+        android:name="com.example.my11.Login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

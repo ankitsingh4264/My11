@@ -7,11 +7,18 @@ import com.example.my11.API.RetrofitInstance
 import com.example.my11.DataClass.Players
 import com.example.my11.DataClass.Squad
 import com.example.my11.DataClass.Team
+import com.example.my11.DataClass.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Response
 
 class Repository {
     private val retrofitCric:CricService = RetrofitInstance.cricInstance
+
+    private val firestoreDB = FirebaseFirestore.getInstance()
+    private val auth= FirebaseAuth.getInstance()
+
     fun getSquad(squadId:String) : MutableLiveData<ArrayList<Team>>{
 
         val data : MutableLiveData<ArrayList<Team>> =MutableLiveData()
@@ -71,5 +78,18 @@ class Repository {
 
 
         }
+
+
+    fun userUpload(user: User) : MutableLiveData<Boolean> {
+        val id = auth.currentUser!!.uid
+        var pos:MutableLiveData<Boolean> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id).set(user).addOnSuccessListener {
+            pos.value=true
+        }.addOnFailureListener{
+            pos.value=false
+        }
+        return pos
+    }
 
 }
