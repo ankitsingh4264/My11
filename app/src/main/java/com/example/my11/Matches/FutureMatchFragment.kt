@@ -6,20 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.my11.API.NewMatchApi
-import com.example.my11.API.RetrofitInstance
 import com.example.my11.API.RetrofitInstance_NewMatch
 import com.example.my11.DataClass.Matche
 import com.example.my11.DataClass.NewMatch
-import com.example.my11.Match
 import com.example.my11.R
+import com.example.my11.Utils
 import kotlinx.android.synthetic.main.fragment_future_match.*
 import retrofit2.Call
 import retrofit2.Response
 
 
-class FutureMatchFragment : Fragment() {
+class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
 
     lateinit var FutureMatch:ArrayList<Matche>
 
@@ -52,14 +52,14 @@ class FutureMatchFragment : Fragment() {
                 val result = response.body()?.matches
                 //Log.i("raj", result.toString())
 
-                for (i in 0..result!!.size - 1) {
-                    if (!result?.get(i).matchStarted) {
-                        FutureMatch.add(result?.get(i))
+                for (i in result!!.indices) {
+                    if (!result.get(i).matchStarted) {
+                        FutureMatch.add(result.get(i))
                     }
 
 
                 }
-                val mAdapter = FutureMatchAdapter(FutureMatch)
+                val mAdapter = FutureMatchAdapter(FutureMatch,this@FutureMatchFragment)
                 recycler_future_match.adapter = mAdapter
             }
 
@@ -68,6 +68,11 @@ class FutureMatchFragment : Fragment() {
             }
 
         })
+    }
+
+    override fun onItemClicked(position: Int) {
+        Utils.FutureMatchtoPlay=FutureMatch.get(position)
+         view?.findNavController()?.navigate(R.id.action_homeFragment_to_play)
     }
 
 }

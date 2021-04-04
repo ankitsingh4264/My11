@@ -13,7 +13,9 @@ data class Players(
     val name:String,
     val playingRole:String?,
     val data:data,
-    val imageURL:String?
+    val imageURL:String?,
+    var selected:Boolean=false,
+    var teamName:String?
 
 )
 data class data(

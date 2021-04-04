@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(requireContext())
         if(account!=null)
-            view?.findNavController()?.navigate(R.id.action_loginFragment_to_play)
+            view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
     }
 
     private fun signIn() {
@@ -112,7 +112,7 @@ class LoginFragment : Fragment() {
 
                     use=User(name=name,email=email)
                     loginmvvm.adduser(use)
-                    view?.findNavController()?.navigate(R.id.action_loginFragment_to_play)
+                    view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
                     //updateUI(user)
                 } else {
                     Toast.makeText(
