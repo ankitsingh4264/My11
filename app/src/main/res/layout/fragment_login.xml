@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/sign_in"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
@@ -15,6 +15,7 @@
         android:backgroundTintMode="multiply">
 
         <LinearLayout
+            android:id="@+id/sign_in"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="2">
