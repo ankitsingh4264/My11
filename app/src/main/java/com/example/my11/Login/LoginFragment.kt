@@ -58,7 +58,7 @@ class LoginFragment : Fragment() {
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
 
-        sign_in.setOnClickListener {
+        login_google.setOnClickListener {
             signIn()
 
 
