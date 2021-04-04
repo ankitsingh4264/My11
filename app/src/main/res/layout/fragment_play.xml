@@ -229,6 +229,18 @@
         </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
     </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_fab"
+            app:icon="@drawable/all_rounder"
+            android:text="PLAY"
+            ></com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+        </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 
