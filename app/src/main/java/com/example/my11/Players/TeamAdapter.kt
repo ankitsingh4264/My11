@@ -43,7 +43,10 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>,val clickList
         fun bind(currPlayer:Players, position: Int){
             val bsr=calbsr(currPlayer)
             val bowlbsr=calbowlsr(currPlayer)
-            itemView.name_of_player.text=currPlayer.name
+            if(currPlayer.name==null)
+                itemView.name_of_player.text="N/A"
+            else
+                itemView.name_of_player.text=currPlayer.name
             itemView.bowlsr.text=bowlbsr
             itemView.batsr.text=bsr
             if (currPlayer.imageURL!=null){

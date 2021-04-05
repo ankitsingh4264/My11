@@ -130,20 +130,20 @@
             android:id="@+id/batsr"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_alignLeft="@+id/name1"
             android:text="Batsr"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:layout_marginLeft="195dp"></TextView>
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@+id/bowlsr"
+            android:textSize="15sp"></TextView>
         <TextView
             android:id="@+id/bowlsr"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_alignLeft="@+id/name1"
             android:text="Bowlsr"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:layout_marginLeft="260dp"></TextView>
+            android:gravity="center_vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="48dp"
+            android:textSize="15sp"></TextView>
 
     </RelativeLayout>
 
@@ -199,21 +199,22 @@
             android:layout_marginLeft="45dp"></TextView>
 
         <TextView
+            android:id="@+id/batsr1"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="195dp"
-            android:layout_alignLeft="@+id/name2"
-            android:gravity="center"
             android:text="Batsr"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@+id/bowlsr1"
             android:textSize="15sp"></TextView>
-
         <TextView
+            android:id="@+id/bowlsr1"
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="260dp"
-            android:gravity="center"
-            android:layout_alignLeft="@+id/name2"
             android:text="Bowlsr"
+            android:gravity="center_vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="48dp"
             android:textSize="15sp"></TextView>
     </RelativeLayout>
 

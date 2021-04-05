@@ -53,7 +53,6 @@ class Play : Fragment(),TeamAdapter.onitemClick {
         playViewMode.teams.observe(requireActivity(),
         Observer { it ->
 
-
             //team 1
             playViewMode.getPlayersDetails1(it[0].players)
             playViewMode.playerinfo1.observe(requireActivity(), Observer {

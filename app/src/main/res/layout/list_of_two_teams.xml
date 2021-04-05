@@ -25,6 +25,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="3dp"
+            android:background="@drawable/ic_person_24"
         />
 
         <TextView

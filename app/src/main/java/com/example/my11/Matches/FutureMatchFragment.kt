@@ -53,7 +53,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
                 //Log.i("raj", result.toString())
 
                 for (i in result!!.indices) {
-                    if (!result.get(i).matchStarted) {
+                    if (!result.get(i).matchStarted && result?.get(i).squad) {
                         FutureMatch.add(result.get(i))
                     }
 
