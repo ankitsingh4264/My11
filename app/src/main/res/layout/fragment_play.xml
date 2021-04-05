@@ -37,7 +37,7 @@
             android:textAllCaps="true"
             android:fontFamily="@font/open_sans_bold"
             android:textColor="@color/black"
-            android:textSize="20sp">
+            android:textSize="14sp">
 
         </TextView>
 
@@ -54,7 +54,7 @@
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#000000"
-            android:textSize="20sp">
+            android:textSize="14sp">
 
         </TextView>
 
@@ -67,6 +67,7 @@
             android:background="@drawable/vs">
         </RelativeLayout>
        <params.com.stepprogressview.StepProgressView
+           android:id="@+id/step_progress"
         android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            app:markers="1,2,3"
@@ -228,8 +229,29 @@
             android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/details_of_team_2"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content">
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_fab"
+                app:icon="@drawable/all_rounder"
+                android:backgroundTint="@android:color/darker_gray"
+
+
+                android:text="PLAY"
+                ></com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+        </RelativeLayout>
     </RelativeLayout>
+
+
     </androidx.core.widget.NestedScrollView>
+
 
 
 

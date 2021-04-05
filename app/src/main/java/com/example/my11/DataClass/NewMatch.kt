@@ -21,7 +21,7 @@ data class Matche(
     val team2: String,
     val toss_winner_team: String,
     val type: String,
-    val unique_id: Int,
+    val unique_id:String,
     val winner_team: String
 )
 

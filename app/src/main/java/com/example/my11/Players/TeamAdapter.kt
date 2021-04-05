@@ -1,20 +1,24 @@
 package com.example.my11.Players
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.my11.DataClass.Players
+import com.example.my11.Players.slected.c
 import com.example.my11.R
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import kotlinx.android.synthetic.main.list_of_two_teams.view.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class TeamAdapter(val context: Context,var list:ArrayList<Players>) : RecyclerView.Adapter<TeamAdapter.ViewHolder>() {
+class TeamAdapter(val context: Context,var list:ArrayList<Players>,val clickListener: onitemClick) : RecyclerView.Adapter<TeamAdapter.ViewHolder>() {
 
 
 
@@ -35,7 +39,8 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>) : RecyclerVi
     }
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bind(currPlayer:Players,position: Int){
+        @SuppressLint("ResourceAsColor")
+        fun bind(currPlayer:Players, position: Int){
             val bsr=calbsr(currPlayer)
             val bowlbsr=calbowlsr(currPlayer)
             itemView.name_of_player.text=currPlayer.name
@@ -45,6 +50,34 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>) : RecyclerVi
                 Glide.with(context).load(currPlayer.imageURL)
                         .into(itemView.image_of_player)
             }
+
+            if (currPlayer.selected) {
+                itemView.team_players_card_view.setCardBackgroundColor(Color.parseColor("#FFFCC9"))
+                itemView.img_add.setImageResource(R.drawable.remove_circle)
+                Log.i("ankitt",currPlayer.toString())
+
+            }else{
+                itemView.team_players_card_view.setCardBackgroundColor(Color.parseColor("#FFFFFF"))
+                itemView.img_add.setImageResource(R.drawable.add_circle)
+                if (c==3){
+                    itemView.team_players_card_view.setCardBackgroundColor(Color.parseColor("#D3D3D3"))
+                }
+            }
+
+
+            itemView.img_add.setOnClickListener {
+
+                if (c==3 ){
+                    if (!currPlayer.selected) return@setOnClickListener
+
+                }
+                Log.i("ank",currPlayer.selected.toString())
+                clickListener.onItemClicked(position,currPlayer.teamName!!)
+
+
+            }
+
+
 
 
         }
@@ -56,6 +89,7 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>) : RecyclerVi
         Log.i("anki",players.toString())
         var tot=0F;
         var runs=0F;
+        if (players.data ==  null) return "0";
         //lista
         if (players.data.batting.listA!=null && (players.data.batting.listA.Runs!=null && !players.data.batting.listA.Runs.equals("-"))){
             tot+=players.data.batting.listA.Mat.toFloat()
@@ -98,6 +132,7 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>) : RecyclerVi
         Log.i("anki",players.toString())
         var tot=0F;
         var runs=0F;
+        if (players.data==null) return "0"
         //lista
         if (players.data.bowling.listA!=null && (players.data.bowling.listA.Wkts!=null && !players.data.bowling.listA.Wkts.equals("-"))){
             tot+=players.data.bowling.listA.Mat.toFloat()
@@ -135,6 +170,9 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>) : RecyclerVi
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
         return df.format(sr)
+    }
+    interface onitemClick{
+        fun onItemClicked(position: Int,team:String)
     }
 
 }

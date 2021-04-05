@@ -10,7 +10,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/team_players_card_view"
         android:layout_width="match_parent"
-        android:backgroundTint="@color/baby_yellow"
+      app:cardBackgroundColor="@color/white"
 
         android:layout_height="wrap_content"
         app:strokeColor="@color/black"

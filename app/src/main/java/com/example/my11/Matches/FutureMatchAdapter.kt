@@ -6,13 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.my11.DataClass.Matche
+import com.example.my11.DataClass.NewMatch
 import com.example.my11.R
 import kotlinx.android.synthetic.main.list_of_future_match.view.*
+import retrofit2.Callback
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FutureMatchAdapter(val list: ArrayList<Matche>) : RecyclerView.Adapter<viewholder1>() {
+class FutureMatchAdapter(val list: ArrayList<Matche>, val clickListener: onitemClick) : RecyclerView.Adapter<viewholder1>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder1 {
         return viewholder1(LayoutInflater.from(parent.context).inflate(R.layout.list_of_future_match, parent, false))
     }
@@ -23,18 +25,26 @@ class FutureMatchAdapter(val list: ArrayList<Matche>) : RecyclerView.Adapter<vie
     }
 
     override fun onBindViewHolder(holder: viewholder1, position: Int) {
-        holder.bind(list[position])
+        holder.bind(list[position],position,clickListener)
+    }
+    interface onitemClick{
+        fun onItemClicked(position: Int)
     }
 
 }
 class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
-    fun bind(data: Matche) {
+    fun bind(data: Matche, position: Int, clickListener:FutureMatchAdapter.onitemClick) {
         with(itemView){
             team1.text=data.team1
             team2.text=data.team2
             val dateString = getfulldateinUTC(data.dateTimeGMT)
             date_text_view.text= getdate(data.dateTimeGMT)
             time_text_view.text=gettime(dateString!!.getDateWithServerTimeStamp().toString())
+
+            this.cardViewFutureMatch.setOnClickListener {
+                clickListener.onItemClicked(position)
+            }
+
         }
 
     }
@@ -49,10 +59,6 @@ class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
             return null
         }
     }
-//    /** OUTPUT **/
-//    String To Date Conversion Tue Jan 09 15:06:41 GMT+08:00 2018
-//    Date To String Conversion 2018-01-09T07:06:41.747Z
-//
 
 
     private fun gettime(dateTimeGMT: String): String? {
@@ -71,6 +77,9 @@ class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
     private fun getfulldateinUTC(dateTimeGMT: String): String? {
         return dateTimeGMT.substring(0)
     }
+
+
+
 
 
 }

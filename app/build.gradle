@@ -71,4 +71,5 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.params.progressview:step-progress:1.0.2'
+
 }
