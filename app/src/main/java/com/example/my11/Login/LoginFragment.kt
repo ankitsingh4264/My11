@@ -109,7 +109,7 @@ class LoginFragment : Fragment() {
                     name=user.displayName
                     email=user.email
                     //phoneNumber=user.phoneNumber
-
+                    Log.i("raje",email)
                     use=User(name=name,email=email)
                     loginmvvm.adduser(use)
                     view?.findNavController()?.navigate(R.id.action_loginFragment_to_play)
