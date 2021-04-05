@@ -9,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.DataClass.Matche
 import com.example.my11.DataClass.Players
@@ -35,6 +37,7 @@ class Play : Fragment(),TeamAdapter.onitemClick {
     private lateinit var adapter1:TeamAdapter
     private lateinit var adapter2: TeamAdapter
     private lateinit var currMatch:Matche
+    var count:Int = 0
     var team1name:String="";
     var team2name:String="";
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,12 +46,15 @@ class Play : Fragment(),TeamAdapter.onitemClick {
         team2Players=ArrayList();
         playViewMode= ViewModelProvider(requireActivity()).get(PlayViewModel::class.java)
         currMatch= Utils.FutureMatchtoPlay!!
+        count = Utils.CountForNullPlayer!!
         team1name=currMatch.team1
         team2name=currMatch.team2
 
         team1.text=currMatch.team1
         team2.text=currMatch.team2
-        step_progress.currentProgress=0;
+        step_progress.currentProgress=0
+        var flag=0
+
         playViewMode.getTeams(currMatch.unique_id)
         playViewMode.teams.observe(requireActivity(),
         Observer { it ->
@@ -57,9 +63,17 @@ class Play : Fragment(),TeamAdapter.onitemClick {
             playViewMode.getPlayersDetails1(it[0].players)
             playViewMode.playerinfo1.observe(requireActivity(), Observer {
                  team1Players=it
-                for (player in team1Players) player.teamName=team1name
-
-                if (team2Players.size!=0){
+                for (player in team1Players)
+                {
+                    player.teamName=team1name
+                    if(player.name==null)   count++;
+                    Log.i("rajeev",count.toString())
+                }
+                if(count>5)
+                {
+                    flag=1;
+                }
+                else if (team2Players.size!=0){
                     Log.i("anki",team1Players.size.toString()+" "+team2Players.size)
                     Log.i("anki",team1Players.toString())
                     Log.i("anki",team2Players.toString())
@@ -83,8 +97,23 @@ class Play : Fragment(),TeamAdapter.onitemClick {
             playViewMode.getPlayersDetails2(it[1].players)
             playViewMode.playerinfo2.observe(requireActivity(), Observer {
                  team2Players=it
-                for (player in team2Players) player.teamName=team2name
-                if (team1Players.size!=0){
+                for (player in team2Players)
+                {
+                    player.teamName=team2name
+                    if(player.name==null)   count++;
+                    Log.i("rajeev",count.toString())
+                }
+                if(count>5)
+                {
+                    flag=1
+                    Toast.makeText(
+                        requireActivity(),
+                        "This match can't be Played.",
+                        Toast.LENGTH_SHORT
+                ).show()
+                    view?.findNavController()?.navigate(R.id.action_play_to_homeFragment)
+                }
+                else if (team1Players.size!=0){
                     Log.i("anki",team1Players.size.toString()+" "+team2Players.size)
                     Log.i("anki",team1Players.toString())
                     Log.i("anki",team2Players.toString())
@@ -104,9 +133,8 @@ class Play : Fragment(),TeamAdapter.onitemClick {
 
             })
 
-
-
         })
+
 
 
     }

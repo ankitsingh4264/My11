@@ -43,7 +43,11 @@
         android:id="@+id/play"
         android:name="com.example.my11.Players.Play"
         android:label="fragment_play"
-        tools:layout="@layout/fragment_play" />
+        tools:layout="@layout/fragment_play" >
+        <action
+            android:id="@+id/action_play_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.my11.Login.LoginFragment"
