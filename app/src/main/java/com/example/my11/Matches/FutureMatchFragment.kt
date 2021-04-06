@@ -14,6 +14,7 @@ import com.example.my11.DataClass.Matche
 import com.example.my11.DataClass.NewMatch
 import com.example.my11.R
 import com.example.my11.Utils
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_future_match.*
 import retrofit2.Call
 import retrofit2.Response
@@ -34,6 +35,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().bottomNav.visibility=View.VISIBLE
 
         FutureMatch = ArrayList()
 

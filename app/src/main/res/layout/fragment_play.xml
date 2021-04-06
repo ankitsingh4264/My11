@@ -6,6 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_margin="5dp">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:lottie_rawRes="@raw/cricket_progress"
+        app:lottie_autoPlay="true"
+
+        app:lottie_loop="true"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
