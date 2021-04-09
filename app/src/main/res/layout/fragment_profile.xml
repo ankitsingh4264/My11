@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Profile.ProfileFragment">
 <RelativeLayout
     android:layout_width="match_parent"
@@ -45,6 +46,157 @@
             android:drawableLeft="@drawable/ic_baseline_location_on_24"
             android:text="Delhi,India"
             ></com.google.android.material.textview.MaterialTextView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/location"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_id"
+            android:layout_below="@+id/location"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="20dp"
+            android:text="singh.ankit2117@gmail.com"
+            android:textColor="#5a5a5a"
+            tools:ignore="NotSibling"></com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_cups"
+            android:layout_below="@+id/txt_id"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="121 Trophies"
+            android:drawableEnd="@drawable/ic_yellow_trphy"
+            android:hint="Total Trophies Won"
+            android:textColor="#5a5a5a"
+            ></com.google.android.material.textview.MaterialTextView>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_wins"
+            android:layout_below="@+id/txt_cups"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="2 wins"
+            android:drawableEnd="@drawable/ic_baseline_outlined_flag_24"
+            android:hint="Match Won"
+            android:textColor="#5a5a5a"
+            ></com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_section"
+            android:layout_below="@id/txt_wins"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:drawableEnd="@drawable/ic_edit"
+            android:focusable="false"
+            android:text="EDIT"
+            ></com.google.android.material.textfield.TextInputEditText>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_section"
+            android:id="@+id/edt_name"
+            android:text="MS DHONI"
+            android:textSize="13sp"
+            android:background="@android:color/transparent"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+
+            android:hint="your name"
+            ></com.google.android.material.textfield.TextInputEditText>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edt_name"
+            android:id="@+id/edt_phn"
+
+            android:textSize="13sp"
+
+            android:background="@android:color/transparent"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="12dp"
+            android:hint="+91"
+            ></com.google.android.material.textfield.TextInputEditText>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/contact_us"
+            android:layout_below="@id/edt_phn"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="20dp"
+            android:drawableEnd="@drawable/ic_support_contact"
+            android:focusable="false"
+            android:text="SUPPORT"
+            ></com.google.android.material.textfield.TextInputEditText>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/call_phn"
+            android:layout_below="@+id/contact_us"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Call us"
+            android:clickable="true"
+            ></com.google.android.material.textview.MaterialTextView>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_contact"
+            android:layout_below="@+id/call_phn"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:text="Feedback"
+            android:clickable="true"
+            ></com.google.android.material.textview.MaterialTextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:id="@+id/logout"
+            android:layout_below="@+id/email_contact"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_baseline_logout_24"
+            ></de.hdodenhof.circleimageview.CircleImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logout"
+            android:layout_centerInParent="true"
+            android:text="logout"
+            ></TextView>
+
+    </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
 
     </RelativeLayout>
     <de.hdodenhof.circleimageview.CircleImageView
