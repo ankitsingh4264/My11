@@ -9,6 +9,6 @@
         android:id="@+id/play"
         android:icon="@drawable/ic_sports_cricket_24" />
     <item android:title="Profile"
-        android:id="@+id/fragment2"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person_24" />
 </menu>
