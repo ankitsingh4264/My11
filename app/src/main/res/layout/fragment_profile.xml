@@ -80,7 +80,7 @@
             android:textStyle="bold"
             android:text="121 Trophies"
             android:drawableEnd="@drawable/ic_yellow_trphy"
-            android:hint="Total Trophies Won"
+            android:autofillHints="Total Trophies Won"
             android:textColor="#5a5a5a"
             ></com.google.android.material.textview.MaterialTextView>
         <com.google.android.material.textview.MaterialTextView
@@ -130,6 +130,7 @@
             android:id="@+id/edt_phn"
 
             android:textSize="13sp"
+            android:inputType="number"
 
             android:background="@android:color/transparent"
             android:layout_marginHorizontal="32dp"
