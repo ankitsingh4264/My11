@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?, p1: PermissionToken?) {
-                        TODO("Not yet implemented")
+                        p1!!.continuePermissionRequest()
                     }
                 }).check()
     }
