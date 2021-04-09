@@ -1,31 +1,98 @@
 package com.example.my11
 
+import android.app.PendingIntent
+import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
 import com.example.my11.DataClass.Squad
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.DexterBuilder
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
+import java.net.CacheRequest
+import java.util.jar.Manifest
 import javax.security.auth.callback.Callback
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var locationrequest:LocationRequest
+    lateinit var fusedLocationProviderClient:FusedLocationProviderClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //setSupportActionBar(toolbar)
 
+        getLoction()
+
             setupNav()
 
            Repository().getSquad("1243394")
 
+    }
+
+    private fun getLoction() {
+        Dexter.withContext(this)
+                .withPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(object : PermissionListener{
+                    override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                        updateLocation()
+                    }
+
+                    override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                        Toast.makeText(this@MainActivity,"You must accept this permission.",Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?, p1: PermissionToken?) {
+                        TODO("Not yet implemented")
+                    }
+                }).check()
+    }
+
+    private fun updateLocation() {
+        buildLocationRequest()
+        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
+        {
+            return
+        }
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationProviderClient.requestLocationUpdates(locationrequest, getPendingIntent())
+    }
+
+    private fun getPendingIntent(): PendingIntent? {
+        val intent = Intent(this@MainActivity,MyLocationService::class.java)
+        intent.setAction(MyLocationService.ACTION_PROCESS_UPDATE)
+        return  PendingIntent.getBroadcast(this@MainActivity,0,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+
+    @Suppress("DEPRECATION")
+    private fun buildLocationRequest() {
+        locationrequest = LocationRequest()
+        locationrequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationrequest.interval = 5000
+        locationrequest.fastestInterval = 3000
+        locationrequest.smallestDisplacement = 10f
     }
 
     private fun setupNav() {
@@ -50,21 +117,6 @@ class MainActivity : AppCompatActivity() {
         bottomNav.visibility = View.GONE
 
     }
-
-//    private fun getMatch() {
-//         val res=RetrofitInstance.cricInstance.matchCalender(1)
-//        res.enqueue(object : retrofit2.Callback<Match>{
-//            override fun onResponse(call: Call<Match>, response: Response<Match>) {
-//                  val result=response.body()
-//
-//                    Log.i("ankit",response.toString())
-//            }
-//
-//            override fun onFailure(call: Call<Match>, t: Throwable) {
-//                Log.i("ankit","${t.message}")
-//            }
-//        })
-//    }
 
 
 }

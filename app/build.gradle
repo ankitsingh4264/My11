@@ -73,6 +73,8 @@ dependencies {
     implementation 'com.params.progressview:step-progress:1.0.2'
     // Material Dialog Library
     implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.1.1'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.karumi:dexter:6.2.2'
 
 
 
