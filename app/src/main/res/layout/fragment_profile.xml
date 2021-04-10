@@ -76,7 +76,7 @@
             android:layout_below="@+id/txt_id"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="121 Trophies"
             android:drawableEnd="@drawable/ic_yellow_trphy"
@@ -90,9 +90,9 @@
             android:layout_below="@+id/txt_cups"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:text="2 wins"
+            android:text="92.2% wins"
             android:drawableEnd="@drawable/ic_baseline_outlined_flag_24"
             android:hint="Match Won"
             android:textColor="#5a5a5a"
@@ -110,20 +110,20 @@
             android:text="EDIT"
             ></com.google.android.material.textfield.TextInputEditText>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edit_section"
-            android:id="@+id/edt_name"
-            android:text="MS DHONI"
-            android:textSize="13sp"
-            android:background="@android:color/transparent"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="10dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edit_section"
+                    android:layout_marginHorizontal="32dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:hint="your name"
+                    android:text="MS DHONI"
 
-            android:hint="your name"
-            ></com.google.android.material.textfield.TextInputEditText>
-        <com.google.android.material.textfield.TextInputEditText
+                    android:textSize="13sp"></com.google.android.material.textfield.TextInputEditText>
+
+                <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/edt_name"
