@@ -5,7 +5,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="80dp"
         android:background="@drawable/new_match_cardview"
         android:layout_margin="10dp">
 
@@ -17,87 +17,53 @@
             android:background="@drawable/vs">
         </RelativeLayout>
 
-        <LinearLayout
+
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/versus"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/winner_team_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:layout_marginHorizontal="10dp"
+                        android:textAlignment="viewEnd"
+                        android:textColor="#000000"
+                        android:layout_centerInParent="true"
+                        android:textAllCaps="true"
+                        android:text="royal "
+                        android:textSize="15sp">
+                    </TextView>
+
+                </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_toLeftOf="@+id/versus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="2">
+            android:layout_gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/faded_one_side">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/new_match_cardview">
+            <TextView
+                android:id="@+id/winner_team_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_bold"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#000000"
+                android:layout_centerInParent="true"
+                android:textAllCaps="true"
+                android:text="england"
+                android:textSize="15sp">
+            </TextView>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/google_logo"
-                        android:layout_margin="2dp">
-                    </ImageView>
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/winner_team_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:text="INDIA"
-                    android:textSize="15sp">
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@drawable/faded_one_side_2">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/new_match_cardview">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/google_logo"
-                        android:layout_margin="2dp">
-                    </ImageView>
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/winner_team_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:textColor="#000000"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:text="england"
-                    android:textSize="15sp">
-                </TextView>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
