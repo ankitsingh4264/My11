@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/main_rl_cardview"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@drawable/new_match_cardview"
@@ -63,6 +64,48 @@
                 android:textSize="15sp">
             </TextView>
 
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/main_rl_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:id="@+id/use_to_align_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_toRightOf="@+id/use_to_align_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/new_match_cardview">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ok"
+                android:layout_centerInParent="true">
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_toLeftOf="@+id/use_to_align_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/new_match_cardview">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_centerInParent="true">
+            </TextView>
         </RelativeLayout>
 
     </RelativeLayout>
