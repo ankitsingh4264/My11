@@ -93,9 +93,10 @@ class Repository {
 
     fun placePrediction(curr:Predicted): MutableLiveData<Boolean> {
         val id = curr.matchId
+        val email=auth.currentUser.email
         var pos:MutableLiveData<Boolean> = MutableLiveData()
 
-        firestoreDB.collection("users").document(id).set(curr).addOnSuccessListener {
+        firestoreDB.collection("users").document(email).collection("Predicted").document(id).set(curr).addOnSuccessListener {
             pos.value=true
         }.addOnFailureListener{
             pos.value=false
