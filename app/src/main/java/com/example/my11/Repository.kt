@@ -3,13 +3,11 @@ package com.example.my11
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
-import com.example.my11.DataClass.Players
-import com.example.my11.DataClass.Squad
-import com.example.my11.DataClass.Team
-import com.example.my11.DataClass.User
+import com.example.my11.DataClass.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
@@ -20,6 +18,7 @@ class Repository {
 
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val auth= FirebaseAuth.getInstance()
+    lateinit var currUser:User
 
     fun getSquad(squadId:String) : MutableLiveData<ArrayList<Team>>{
 
@@ -145,6 +144,20 @@ class Repository {
                 }
 
         return isUserExist
+    }
+
+    fun placePrediction(curr:Predicted): MutableLiveData<Boolean> {
+        val id = curr.matchId
+        val email=auth.currentUser.email
+        var pos:MutableLiveData<Boolean> = MutableLiveData()
+
+        firestoreDB.collection("users").document(email).collection("Predicted").document(id).set(curr).addOnSuccessListener {
+            pos.value=true
+        }.addOnFailureListener{
+            pos.value=false
+        }
+        return pos
+
     }
 
 }

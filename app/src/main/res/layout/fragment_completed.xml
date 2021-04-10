@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Players.Completed">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/pb_animation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:lottie_rawRes="@raw/ball_loading"
+        app:lottie_autoPlay="true"
+
+        app:lottie_loop="true"/>
+    <TextView
+        android:id="@+id/pb_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Placing Your Prediction..."
+        android:layout_below="@+id/pb_animation"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+
+        android:textColor="@color/theme_red"
+
+        ></TextView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/sprinkle_anime"
+        android:visibility="gone"
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        app:lottie_rawRes="@raw/sprinkle"
+        app:lottie_autoPlay="true"
+
+        app:lottie_loop="true"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/complete_anime"
+        android:visibility="gone"
+        android:layout_below="@id/sprinkle_anime"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+
+        app:lottie_rawRes="@raw/done"
+        app:lottie_autoPlay="true"
+
+        app:lottie_loop="true"/>
+
+
+    <TextView
+        android:id="@+id/success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/complete_anime"
+        android:text="Predection Placed Successfuly"
+        android:textSize="24sp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+
+        android:textStyle="bold"
+        android:textColor="@color/theme_red"
+        android:layout_centerInParent="true"
+        ></TextView>
+    <RelativeLayout
+        android:id="@+id/rl_finish"
+        android:visibility="gone"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/success"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:id="@+id/btn_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/red_border"
+            android:paddingHorizontal="15dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            android:text="Finish"
+            ></TextView>
+    </RelativeLayout>
+
+<!--    <TextView-->
+
+
+<!--            -->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/btn_finish"-->
+<!--        android:text="@string/rule"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginHorizontal="15dp"-->
+<!--        android:textSize="10sp"-->
+<!--        tools:ignore="NotSibling"></TextView>-->
+
+
+
+
+
+
+
+</RelativeLayout>

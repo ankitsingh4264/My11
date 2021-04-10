@@ -1,6 +1,8 @@
 package com.example.my11.Players
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -15,12 +17,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.DataClass.Matche
 import com.example.my11.DataClass.Players
+import com.example.my11.DataClass.Predicted
 import com.example.my11.Players.slected.c
 import com.example.my11.R
 import com.example.my11.Utils
 import dev.shreyaspatil.MaterialDialog.MaterialDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_play.*
+import kotlinx.android.synthetic.main.winner_team_cardview.view.*
 
 
 class Play : Fragment(),TeamAdapter.onitemClick {
@@ -44,6 +48,7 @@ class Play : Fragment(),TeamAdapter.onitemClick {
     var team2name:String="";
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        c=0;
 //        showProgress(true)
         team1Players=ArrayList();
         requireActivity().bottomNav.visibility=View.GONE
@@ -78,7 +83,7 @@ class Play : Fragment(),TeamAdapter.onitemClick {
 //                        Log.i("anki", team1Players.size.toString() + " " + team2Players.size)
 //                        Log.i("anki", team1Players.toString())
 //                        Log.i("anki", team2Players.toString())
-                        showProgress(false)
+
 
 
                         adapter1 = TeamAdapter(requireContext(), team1Players, this)
@@ -120,14 +125,12 @@ class Play : Fragment(),TeamAdapter.onitemClick {
                             "This match can't be Played.",
                             Toast.LENGTH_SHORT
                         ).show()
-//                        mDialog.dismiss()
                         animationView.visibility=View.GONE
                         view.findNavController().navigate(R.id.action_play_to_homeFragment)
                     } else if (team1Players.size != 0) {
 //                        Log.i("anki", team1Players.size.toString() + " " + team2Players.size)
 //                        Log.i("anki", team1Players.toString())
 //                        Log.i("anki", team2Players.toString())
-//                        mDialog.dismiss()
                         animationView.visibility=View.GONE
                         adapter1 = TeamAdapter(requireContext(), team1Players, this)
                         recycler_view_team_1.apply {
@@ -153,27 +156,84 @@ class Play : Fragment(),TeamAdapter.onitemClick {
 
                 })
 
+                btn_fab.setOnClickListener {
+
+                    playClick();
+
+                }
+
             })
 
 
 
 
     }
-   lateinit var  mDialog:MaterialDialog
 
-     fun showProgress(show:Boolean){
+    private fun playClick() {
+        if (c!=3) {
+            Toast.makeText(requireActivity(),"Complete Your Team",Toast.LENGTH_SHORT).show()
+            return
+        }
+        showDialog()
+    }
+
+      var predictedTeam:String="";
+
+     fun showDialog(){
+
+         val mDialogView = LayoutInflater.from(requireContext()).inflate(
+                 R.layout.winner_team_cardview,
+                 null
+         )
+         mDialogView.winner_team_1_tv.text=team1name
+         mDialogView.winner_team_2_tv.text=team2name
+         val dialogBuilder=AlertDialog.Builder(requireActivity()).setView(mDialogView);
+
+         val alertDialog = dialogBuilder.show();
+         mDialogView.winner_team_1.setOnClickListener {
+             mDialogView.rl_predict.setBackgroundResource(R.drawable.red_border)
+            predictedTeam=team1name;
+             mDialogView.winner_team_1.setBackgroundResource(R.drawable.faded_one_side);
+             mDialogView.winner_team_2.setBackgroundResource(R.color.white);
+
+         }
+
+         mDialogView.winner_team_2.setOnClickListener {
+             mDialogView.rl_predict.setBackgroundResource(R.drawable.red_border)
+             predictedTeam=team2name;
+             mDialogView.winner_team_1.setBackgroundResource(R.color.white);
+             mDialogView.winner_team_2.setBackgroundResource(R.drawable.faded_one_side_2);
+
+         }
 
 
-     mDialog  = MaterialDialog.Builder(requireActivity())
+         mDialogView.rl_predict.setOnClickListener {
 
-             .setMessage("Getting Your Team Ready")
-             .setAnimation(R.raw.cricket_progress)
-             .setCancelable(false)
+           //place the bet
+
+             if (predictedTeam=="") return@setOnClickListener
+             val p:HashMap<String,Int> = HashMap();
+             for (player in team1Players) {
+                 if (player.selected) p.put(player.pid,0);
+             }
+             for (player in team2Players) {
+                 if (player.selected) p.put(player.pid,0);
+             }
+             val currPredicted:Predicted= Predicted(p,predictedTeam,Utils.FutureMatchtoPlay!!.unique_id)
+             Utils.prediction=currPredicted
+             alertDialog.dismiss()
+             view?.findNavController()!!.navigate(R.id.action_play_to_completed)
 
 
-             .build()
-        if (show)
-         mDialog.show()
+         }
+         mDialogView.rl_cancel.setOnClickListener {
+             //dismiss
+             alertDialog.dismiss()
+         }
+
+
+
+
 
      }
 

@@ -22,7 +22,9 @@ data class Matche(
     val toss_winner_team: String,
     val type: String,
     val unique_id:String,
-    val winner_team: String
+    val winner_team: String,
+    val predicted_Winner_team:String,
+    val selectedPlayers:HashMap<String,Int>
 )
 
 data class Provider(

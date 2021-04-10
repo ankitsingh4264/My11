@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_play_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_play_to_completed"
+            app:destination="@id/completed" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -61,9 +64,5 @@
         android:id="@+id/profileFragment"
         android:name="com.example.my11.Profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
 </navigation>
