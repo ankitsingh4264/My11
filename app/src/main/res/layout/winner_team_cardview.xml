@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Choose Your Team"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:id="@+id/ct"
+        android:layout_marginVertical="4dp"
+        ></TextView>
 
     <RelativeLayout
+        android:layout_below="@id/ct"
         android:id="@+id/main_rl_cardview"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -20,6 +33,7 @@
 
 
                 <RelativeLayout
+                    android:id="@+id/winner_team_2"
                     android:layout_toRightOf="@+id/versus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -27,7 +41,9 @@
 
 
                     <TextView
-                        android:id="@+id/winner_team_1"
+                        android:id="@+id/winner_team_2_tv"
+
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans_bold"
@@ -45,6 +61,8 @@
 
 
         <RelativeLayout
+            android:id="@+id/winner_team_1"
+
             android:layout_toLeftOf="@+id/versus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -52,7 +70,8 @@
 
 
             <TextView
-                android:id="@+id/winner_team_2"
+                android:id="@+id/winner_team_1_tv"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_bold"
@@ -81,6 +100,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_predict"
             android:layout_toRightOf="@+id/use_to_align_rl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -89,12 +109,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ok"
+                android:text="Predict"
                 android:layout_centerInParent="true">
             </TextView>
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_cancel"
             android:layout_toLeftOf="@+id/use_to_align_rl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
