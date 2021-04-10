@@ -1,5 +1,7 @@
 package com.example.my11
 
+import android.content.ContentValues.TAG
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.my11.API.CricService
@@ -81,7 +83,7 @@ class Repository {
 
 
     fun userUpload(user: User) : MutableLiveData<Boolean> {
-        val id = auth.currentUser!!.uid
+        val id = auth.currentUser!!.email
         var pos:MutableLiveData<Boolean> = MutableLiveData()
 
         firestoreDB.collection("users").document(id).set(user).addOnSuccessListener {
@@ -90,6 +92,59 @@ class Repository {
             pos.value=false
         }
         return pos
+    }
+    fun userUpdate(name : String, phone:String) : MutableLiveData<Boolean> {
+        val id = auth.currentUser!!.email
+        var pos:MutableLiveData<Boolean> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id)
+                .update(mapOf(
+                        "name" to name,
+                        "phone" to phone
+                ))
+                .addOnSuccessListener { pos.value=true }
+                .addOnFailureListener { pos.value=false }
+        return pos
+    }
+    fun userdpUpdate(profile:Uri) : MutableLiveData<Boolean> {
+        val id = auth.currentUser!!.email
+        var pos:MutableLiveData<Boolean> = MutableLiveData()
+
+        firestoreDB.collection("users").document(id)
+                .update(mapOf(
+                        "picture" to profile.toString()
+                ))
+                .addOnSuccessListener { pos.value=true }
+                .addOnFailureListener { pos.value=false }
+        return pos
+    }
+
+    fun getuser():MutableLiveData<User>{
+        val data:MutableLiveData<User> = MutableLiveData()
+        val id= auth.currentUser?.email
+        if (id==null) return data
+        firestoreDB.collection("users").document(id!!).get().addOnSuccessListener {
+            data.value=it.toObject(User::class.java)
+        }
+        return data
+    }
+
+    fun userExists(email: String): MutableLiveData<Boolean> {
+
+        val isUserExist: MutableLiveData<Boolean> = MutableLiveData()
+
+        firestoreDB.collection("users").document(email)
+                .get().addOnSuccessListener {
+
+                    if(it.toObject(User::class.java) !=null)
+                        isUserExist.value = true
+                    else
+                        isUserExist.value = false
+                }.addOnFailureListener {
+                    isUserExist.value = false
+                }
+
+        return isUserExist
     }
 
 }

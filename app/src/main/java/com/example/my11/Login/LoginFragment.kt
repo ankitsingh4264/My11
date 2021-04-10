@@ -35,7 +35,7 @@ class LoginFragment : Fragment() {
     var use:User=User()
     var name:String =""
     var email:String=""
-    var phoneNumber:String=""
+    var dp:String=""
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +84,10 @@ class LoginFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+
+
+
+
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -108,11 +112,31 @@ class LoginFragment : Fragment() {
                     val user = auth.currentUser
                     name=user.displayName
                     email=user.email
+                    dp=user.photoUrl.toString()
                     //phoneNumber=user.phoneNumber
-                    Log.i("raje",email)
-                    use=User(name=name,email=email)
-                    loginmvvm.adduser(use)
-                    view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
+//                    Log.i("raje",phonenumber!!)
+
+                    loginmvvm.check(email)
+                    loginmvvm.userexits.observe(viewLifecycleOwner,
+                            {
+                                if (it == true) {
+                                    view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
+                                } else {
+                                    Log.i("rajeev",name+email+dp)
+                                    use = User(name = name, email = email, picture = dp)
+                                    loginmvvm.adduser(use)
+                                    loginmvvm.userAdded.observe(viewLifecycleOwner,
+                                            {
+                                                if (it == true)
+                                                    view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
+                                                else
+                                                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
+                                            })
+
+                                }
+                            })
+
+
                     //updateUI(user)
                 } else {
                     Toast.makeText(
