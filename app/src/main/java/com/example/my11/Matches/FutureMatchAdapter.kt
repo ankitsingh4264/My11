@@ -49,7 +49,7 @@ class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
             }
             else
             {
-                this.setBackgroundColor(Color.parseColor("#FFFFFF"))
+                this.rl_future_match.setBackgroundResource(R.drawable.new_match_cardview)
             }
             this.cardViewFutureMatch.setOnClickListener {
                 clickListener.onItemClicked(position)
