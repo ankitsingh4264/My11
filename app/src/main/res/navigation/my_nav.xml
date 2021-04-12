@@ -64,5 +64,18 @@
         android:id="@+id/profileFragment"
         android:name="com.example.my11.Profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completed"
+        android:name="com.example.my11.Players.Completed"
+        android:label="fragment_completed"
+        tools:layout="@layout/fragment_completed" >
+        <action
+            android:id="@+id/action_completed_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
