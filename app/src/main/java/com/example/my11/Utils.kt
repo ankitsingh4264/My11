@@ -9,6 +9,5 @@ object  Utils {
     var latitude:String? = ""
     var longitude:String? = ""
     var prediction:Predicted?=null
-
-
+    var SetofplayedMatches:HashSet<String>  = HashSet()
 }

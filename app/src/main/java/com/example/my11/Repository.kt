@@ -160,4 +160,21 @@ class Repository {
 
     }
 
+    fun getPlacedMactchID(email:String):HashSet<String>
+    {
+        val list:HashSet<String> = HashSet()
+
+        firestoreDB.collection("users").document(email).collection("Predicted").get().addOnSuccessListener {
+            //Log.i("TAG", it.toString())
+
+                    for (document in it) {
+                Log.i("TAG", "${document.id}")
+                list.add(document.id.toString())
+            }
+        }.addOnFailureListener{
+
+        }
+        return list
+    }
+
 }

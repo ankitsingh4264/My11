@@ -1,5 +1,6 @@
 package com.example.my11.Matches
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.my11.DataClass.Matche
 import com.example.my11.DataClass.NewMatch
 import com.example.my11.R
+import com.example.my11.Utils
+import kotlinx.android.synthetic.main.fragment_future_match.view.*
 import kotlinx.android.synthetic.main.list_of_future_match.view.*
 import retrofit2.Callback
 import java.text.ParseException
@@ -40,7 +43,14 @@ class viewholder1(itemView: View) :RecyclerView.ViewHolder(itemView){
             val dateString = getfulldateinUTC(data.dateTimeGMT)
             date_text_view.text= getdate(data.dateTimeGMT)
             time_text_view.text=gettime(dateString!!.getDateWithServerTimeStamp().toString())
-
+            if(Utils.SetofplayedMatches.contains(data.unique_id))
+            {
+                this.rl_future_match.setBackgroundResource(R.drawable.faded_cardview)
+            }
+            else
+            {
+                this.setBackgroundColor(Color.parseColor("#FFFFFF"))
+            }
             this.cardViewFutureMatch.setOnClickListener {
                 clickListener.onItemClicked(position)
             }
