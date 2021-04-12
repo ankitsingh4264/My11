@@ -43,11 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         //setSupportActionBar(toolbar)
 
-        getLoction()
+            getLoction()
 
             setupNav()
 
-           Repository().getSquad("1243394")
 
     }
 

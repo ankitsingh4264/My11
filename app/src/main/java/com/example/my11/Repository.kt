@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
 import com.example.my11.DataClass.*
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
@@ -159,6 +160,55 @@ class Repository {
         return pos
 
     }
+    fun getPredictedMatches(): MutableLiveData<ArrayList<Predicted>> {
+        val email=auth.currentUser.email
+
+        val matches:MutableLiveData<ArrayList<Predicted>> = MutableLiveData()
+        firestoreDB.collection("users").document(email).collection("Predicted").get().addOnSuccessListener {
+            val temp:ArrayList<Predicted> = ArrayList()
+            for (data in it.documents){
+
+
+                val k=data.toObject(Predicted::class.java)
+
+//                if (k!!.dateTimeGMT > Timestamp.now().toDate())   //todo
+                temp.add(k!!)
+            }
+            matches.value=temp
+        }
+        return matches
+    }
+    fun getCompletedMatches(list:ArrayList<Predicted>): MutableLiveData<ArrayList<CompletedMatch>> {
+        val res:MutableLiveData<ArrayList<CompletedMatch>> = MutableLiveData()
+        val arr :ArrayList<CompletedMatch> = ArrayList();
+        for (mat in list){
+
+            val playres=retrofitCric.getCompletedMatch(mat.matchId)
+
+            playres.enqueue(object : retrofit2.Callback<CompletedMatch>{
+                override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
+                    val p: CompletedMatch? =response.body()
+
+                   if (p!!.data!=null)
+                    Log.i("ankit",p.data!!.winner_team.toString())
+
+
+                    arr.add(p!!)
+
+                    if (arr.size==list.size) {
+
+                        res.value=arr;
+                    }
+
+                }
+                override fun onFailure(call: Call<CompletedMatch>, t: Throwable) {
+
+                }
+            })
+        }
+        return  res
+    }
+
 
     fun getPlacedMactchID(email:String):HashSet<String>
     {

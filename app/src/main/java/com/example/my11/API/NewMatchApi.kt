@@ -1,7 +1,6 @@
 package com.example.my11.API
 
 import com.example.my11.DataClass.NewMatch
-import com.example.my11.Match
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

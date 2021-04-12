@@ -2,7 +2,6 @@ package com.example.my11.Players
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +20,6 @@ import com.example.my11.DataClass.Predicted
 import com.example.my11.Players.slected.c
 import com.example.my11.R
 import com.example.my11.Utils
-import dev.shreyaspatil.MaterialDialog.MaterialDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_play.*
 import kotlinx.android.synthetic.main.winner_team_cardview.view.*
@@ -219,7 +217,7 @@ class Play : Fragment(),TeamAdapter.onitemClick {
              for (player in team2Players) {
                  if (player.selected) p.put(player.pid,0);
              }
-             val currPredicted:Predicted= Predicted(p,predictedTeam,Utils.FutureMatchtoPlay!!.unique_id)
+             val currPredicted:Predicted= Predicted(p,predictedTeam,Utils.FutureMatchtoPlay!!.unique_id, Utils.FutureMatchtoPlay!!.dateTimeGMT)
              Utils.prediction=currPredicted
              alertDialog.dismiss()
              view?.findNavController()!!.navigate(R.id.action_play_to_completed)

@@ -1,8 +1,9 @@
 package com.example.my11.API
 
+import com.example.my11.DataClass.CompletedMatch
 import com.example.my11.DataClass.Players
 import com.example.my11.DataClass.Squad
-import com.example.my11.Match
+import com.example.my11.PlayedMatch
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,10 +15,7 @@ const val BASE_URL="https://cricapi.com/api/"
 const val API_KEY="NVvSuM2OIwPanROYT8QS2Y4ihwm1"
 interface CricService {
 
-//    https://cricapi.com/api/matchCalendar?apikey=NVvSuM2OIwPanROYT8QS2Y4ihwm1
-    @GET("matchCalendar?apikey=$API_KEY")
 
-    fun  matchCalender(@Query("page") page:Int):Call<Match>
  //  https://cricapi.com/api/fantasySquad?apikey=NVvSuM2OIwPanROYT8QS2Y4ihwm1&unique_id=1034809
 
     @GET("fantasySquad?apikey=$API_KEY")
@@ -26,6 +24,10 @@ interface CricService {
 
     @GET("playerStats?apikey=$API_KEY")
     fun getPlayerDetails(@Query("pid")id:String) : Call<Players>
+
+    //https://cricapi.com/api/fantasySummary?apikey=NVvSuM2OIwPanROYT8QS2Y4ihwm1&unique_id=1254060
+    @GET("fantasySummary?apikey=$API_KEY")
+    fun getCompletedMatch(@Query("unique_id") id:String) :Call<CompletedMatch>
 
 }
  object RetrofitInstance{
