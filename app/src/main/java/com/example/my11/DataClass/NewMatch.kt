@@ -27,9 +27,5 @@ data class Matche(
     val selectedPlayers:HashMap<String,Int>
 )
 
-data class Provider(
-    val pubDate: String,
-    val source: String,
-    val url: String
-)
+
 
