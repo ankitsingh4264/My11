@@ -178,24 +178,59 @@ class Repository {
         }
         return matches
     }
-    fun getCompletedMatches(list:ArrayList<Predicted>): MutableLiveData<ArrayList<CompletedMatch>> {
-        val res:MutableLiveData<ArrayList<CompletedMatch>> = MutableLiveData()
-        val arr :ArrayList<CompletedMatch> = ArrayList();
+    fun getCompletedMatches(list:ArrayList<Predicted>): MutableLiveData<ArrayList<Predicted>> {
+        val res:MutableLiveData<ArrayList<Predicted>> = MutableLiveData()
+        val arr :ArrayList<Predicted> = ArrayList();
+        var result=0;
         for (mat in list){
+//            if (mat.dateTimeGMT!!.substring(5,7).toInt()>Timestamp.now().toDate().month && mat.dateTimeGMT!!.substring(8,10).toInt()>Timestamp.now().toDate().day ){
+//                result++;
+//                continue
+//
+//            }
+
 
             val playres=retrofitCric.getCompletedMatch(mat.matchId)
 
             playres.enqueue(object : retrofit2.Callback<CompletedMatch>{
                 override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
                     val p: CompletedMatch? =response.body()
+                    result++;
 
                    if (p!!.data!=null)
                     Log.i("ankit",p.data!!.winner_team.toString())
+                   //batting pts
+                   for (item in p.data!!.batting!!){
+                          for (players in item!!.scores!!){
+                              val id=players!!.pid!!
+                              val runs=players.R!!.toInt()
+                              if (mat.predictedPlayers!!.containsKey(id)){
+                                  mat.predictedPlayers!![id] = runs
+                              }
+                          }
+
+                   }
+                    //bowling pts
+                    for (item in p.data.bowling!!){
+                        for (players in item!!.scores!!){
+                            val id=players!!.pid!!
+                            val wkts=players.W!!.toInt()*50
+                            if (mat.predictedPlayers!!.containsKey(id)){
+                                mat.predictedPlayers!![id] = wkts
+                            }
+                        }
+
+                    }
+                    mat.winnerTeam=p.data.winner_team!!
+
+                    //update in firebase
+                    firestoreDB.collection("users").document(auth.currentUser.email).collection("Predicted").document(mat.matchId).set(mat)
 
 
-                    arr.add(p!!)
 
-                    if (arr.size==list.size) {
+                    arr.add(mat)
+
+                    if (result==list.size) {
 
                         res.value=arr;
                     }

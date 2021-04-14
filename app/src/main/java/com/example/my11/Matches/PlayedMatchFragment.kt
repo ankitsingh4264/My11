@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.Players.PlayViewModel
 import com.example.my11.R
+import kotlinx.android.synthetic.main.fragment_played_match.*
 
 class PlayedMatchFragment : Fragment() {
 
@@ -22,6 +24,7 @@ class PlayedMatchFragment : Fragment() {
     }
 
     private lateinit var playedMatchVIewModel:PlayedMatchVIewModel
+    private  lateinit var dapter: CompletedMatchAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,7 +36,21 @@ class PlayedMatchFragment : Fragment() {
 
             playedMatchVIewModel.getCompletedMatch(it!!)
             playedMatchVIewModel.completedMatch.observe(requireActivity(), Observer {
-//                Log.i("ankit",it.toString())
+                       Log.i("predict",it.toString())
+                dapter= CompletedMatchAdapter(requireActivity(),it)
+                rv_completed.apply {
+                    adapter=dapter
+                    layoutManager = LinearLayoutManager(
+                            requireContext(),
+                            LinearLayoutManager.VERTICAL,
+                            false
+                    )
+
+
+                }
+
+
+
             })
         })
 

@@ -217,7 +217,7 @@ class Play : Fragment(),TeamAdapter.onitemClick {
              for (player in team2Players) {
                  if (player.selected) p.put(player.pid,0);
              }
-             val currPredicted:Predicted= Predicted(p,predictedTeam,Utils.FutureMatchtoPlay!!.unique_id, Utils.FutureMatchtoPlay!!.dateTimeGMT)
+             val currPredicted:Predicted= Predicted(p,predictedTeam,Utils.FutureMatchtoPlay!!.unique_id, Utils.FutureMatchtoPlay!!.dateTimeGMT,team1 = team1name,team2 = team2name)
              Utils.prediction=currPredicted
              alertDialog.dismiss()
              view?.findNavController()!!.navigate(R.id.action_play_to_completed)
