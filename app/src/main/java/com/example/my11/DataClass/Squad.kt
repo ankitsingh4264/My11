@@ -12,13 +12,13 @@ data class Players(
     val pid:String,
     val name:String,
     val playingRole:String?,
-    val data:data,
+    val data:Dataa,
     val imageURL:String?,
     var selected:Boolean=false,
     var teamName:String?
 
 )
-data class data(
+data class Dataa(
     val bowling:playType,
     val batting:playType
 )

@@ -75,6 +75,11 @@ dependencies {
     implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.1.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation ('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+        transitive = true;
+    }
 
 
 
