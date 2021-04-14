@@ -11,12 +11,12 @@ import com.example.my11.DataClass.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import retrofit2.Call
 import retrofit2.Response
 
 class Repository {
     private val retrofitCric:CricService = RetrofitInstance.cricInstance
-
     private val firestoreDB = FirebaseFirestore.getInstance()
     private val auth= FirebaseAuth.getInstance()
     lateinit var currUser:User
@@ -106,18 +106,7 @@ class Repository {
                 .addOnFailureListener { pos.value=false }
         return pos
     }
-    fun userdpUpdate(profile:Uri) : MutableLiveData<Boolean> {
-        val id = auth.currentUser!!.email
-        var pos:MutableLiveData<Boolean> = MutableLiveData()
 
-        firestoreDB.collection("users").document(id)
-                .update(mapOf(
-                        "picture" to profile.toString()
-                ))
-                .addOnSuccessListener { pos.value=true }
-                .addOnFailureListener { pos.value=false }
-        return pos
-    }
 
     fun getuser():MutableLiveData<User>{
         val data:MutableLiveData<User> = MutableLiveData()
@@ -226,5 +215,30 @@ class Repository {
         }
         return list
     }
+
+    fun uploadPictureToFirebase(imageURI: Uri) :MutableLiveData<Boolean>{
+        val email = auth.currentUser!!.email
+        val storageReference =
+            FirebaseStorage.getInstance().getReference("/ProfilePictures/$email")
+        val uploadedMutableLiveData:MutableLiveData<Boolean> = MutableLiveData()
+
+        storageReference.putFile(imageURI)
+            .addOnSuccessListener {
+                storageReference.downloadUrl
+                    .addOnSuccessListener {
+                        firestoreDB.collection("users").document(email)
+                            .update("picture", it.toString())
+                    }
+            }
+            .addOnProgressListener {
+            }
+            .addOnCompleteListener {
+                uploadedMutableLiveData.value=true
+
+            }
+        return uploadedMutableLiveData
+
+    }
+
 
 }

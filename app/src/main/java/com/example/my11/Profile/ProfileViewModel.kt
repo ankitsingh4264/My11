@@ -10,6 +10,8 @@ class ProfileViewModel: ViewModel() {
     private  val FirebaseDatabase= Repository()
     var curruser : MutableLiveData<User> = MutableLiveData()
     var updatedcurruser : MutableLiveData<Boolean> = MutableLiveData()
+    var mUserPPuploaded: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+
 
     fun getcurruser(){
         curruser=FirebaseDatabase.getuser()
@@ -20,8 +22,8 @@ class ProfileViewModel: ViewModel() {
         updatedcurruser=FirebaseDatabase.userUpdate(n,p)
     }
 
-    fun updatedpuser(dp:Uri)
-    {
-        updatedcurruser=FirebaseDatabase.userdpUpdate(dp)
+
+    fun uploadDocumentsToFirebase(imageUri: Uri) {
+        mUserPPuploaded=FirebaseDatabase.uploadPictureToFirebase(imageUri)
     }
 }

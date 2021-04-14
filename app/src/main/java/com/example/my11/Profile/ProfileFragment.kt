@@ -199,8 +199,8 @@ class ProfileFragment : Fragment() {
             if (requestCode == STORAGE_REQUEST_CODE && data != null) {
                 dpURI = data.data
 
-                profilemvvm.updatedpuser(dpURI!!)
-                profilemvvm.updatedcurruser.observe(viewLifecycleOwner,
+                profilemvvm.uploadDocumentsToFirebase(dpURI!!)
+                profilemvvm.mUserPPuploaded.observe(viewLifecycleOwner,
                         {
                             if(it==true)
                             {
