@@ -10,77 +10,36 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
-        android:backgroundTintMode="multiply">
-
-        <LinearLayout
-            android:id="@+id/sign_in"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="2">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:id="@+id/logo_my_11"
-                        android:layout_width="65dp"
-                        android:layout_height="70dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/logo_my_11">
-
-                    </ImageView>
-                </RelativeLayout>
+        android:background="@drawable/background"
+        android:backgroundTintMode="multiply"
+        android:backgroundTint="#FFFFFF">
 
 
-            </LinearLayout>
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/logo_2"
+            android:backgroundTintMode="multiply"
+            android:backgroundTint="#FFFFFF"
+            android:layout_centerInParent="true">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:id="@+id/text_my_11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text=" MY 11"
-                        android:textColor="#730202"
-                        android:textSize="30sp">
-
-                    </TextView>
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
+        </ImageView>
 
 
         <RelativeLayout
             android:id="@+id/login_google"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/new_match_cardview"
+            android:fadingEdge="horizontal"
+            android:background="@drawable/button"
             android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/img_google"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/google_logo"></ImageView>
@@ -94,7 +53,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="15dp"
-                android:textColor="#730202"
+                android:textColor="@color/theme_red"
                 android:textSize="15sp"
                 android:textStyle="bold">
 
