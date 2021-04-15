@@ -10,7 +10,7 @@ import com.example.my11.Repository
 class PlayedMatchVIewModel : ViewModel() {
     private  val repo: Repository = Repository();
     var playedMatch:MutableLiveData<ArrayList<Predicted>>  = MutableLiveData();
-    var completedMatch:MutableLiveData<ArrayList<CompletedMatch>>  = MutableLiveData();
+    var completedMatch:MutableLiveData<ArrayList<Predicted>>  = MutableLiveData();
 
     fun getPlayedMatch(){
         playedMatch=repo.getPredictedMatches()
