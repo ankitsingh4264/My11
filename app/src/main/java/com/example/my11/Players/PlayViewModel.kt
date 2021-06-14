@@ -1,10 +1,9 @@
 package com.example.my11.Players
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.my11.DataClass.Players
-import com.example.my11.DataClass.Team
+import com.example.my11.beans.Players
+import com.example.my11.beans.Team
 import com.example.my11.Repository
 
 class PlayViewModel : ViewModel() {

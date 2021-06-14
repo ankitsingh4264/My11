@@ -14,9 +14,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.my11.DataClass.Matche
-import com.example.my11.DataClass.Players
-import com.example.my11.DataClass.Predicted
+import com.example.my11.beans.Matche
+import com.example.my11.beans.Players
+import com.example.my11.beans.Predicted
 import com.example.my11.Players.slected.c
 import com.example.my11.R
 import com.example.my11.Utils

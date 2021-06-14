@@ -1,4 +1,4 @@
-package com.example.my11.DataClass
+package com.example.my11.beans
 
 import com.google.gson.annotations.SerializedName
 

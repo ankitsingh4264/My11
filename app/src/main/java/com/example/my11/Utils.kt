@@ -1,7 +1,7 @@
 package com.example.my11
 
-import com.example.my11.DataClass.Matche
-import com.example.my11.DataClass.Predicted
+import com.example.my11.beans.Matche
+import com.example.my11.beans.Predicted
 
 object  Utils {
     var FutureMatchtoPlay:Matche? =null

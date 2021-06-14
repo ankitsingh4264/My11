@@ -1,9 +1,8 @@
 package com.example.my11.API
 
-import com.example.my11.DataClass.CompletedMatch
-import com.example.my11.DataClass.Players
-import com.example.my11.DataClass.Squad
-import com.example.my11.PlayedMatch
+import com.example.my11.beans.CompletedMatch
+import com.example.my11.beans.Players
+import com.example.my11.beans.Squad
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

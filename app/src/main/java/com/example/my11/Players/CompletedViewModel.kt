@@ -2,7 +2,7 @@ package com.example.my11.Players
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.my11.DataClass.Predicted
+import com.example.my11.beans.Predicted
 import com.example.my11.Repository
 
 class CompletedViewModel : ViewModel() {

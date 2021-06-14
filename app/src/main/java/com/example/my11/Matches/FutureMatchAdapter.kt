@@ -1,18 +1,14 @@
 package com.example.my11.Matches
 
-import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.my11.DataClass.Matche
-import com.example.my11.DataClass.NewMatch
+import com.example.my11.beans.Matche
 import com.example.my11.R
 import com.example.my11.Utils
-import kotlinx.android.synthetic.main.fragment_future_match.view.*
 import kotlinx.android.synthetic.main.list_of_future_match.view.*
-import retrofit2.Callback
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*

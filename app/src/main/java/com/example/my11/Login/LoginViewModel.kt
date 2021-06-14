@@ -2,7 +2,7 @@ package com.example.my11.Login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.my11.DataClass.User
+import com.example.my11.beans.User
 import com.example.my11.Repository
 
 class LoginViewModel: ViewModel() {

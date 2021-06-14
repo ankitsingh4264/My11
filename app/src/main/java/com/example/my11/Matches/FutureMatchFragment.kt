@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.API.RetrofitInstance_NewMatch
-import com.example.my11.DataClass.Matche
-import com.example.my11.DataClass.NewMatch
-import com.example.my11.Login.LoginViewModel
+import com.example.my11.beans.Matche
+import com.example.my11.beans.NewMatch
 import com.example.my11.R
 import com.example.my11.Utils
 import com.google.firebase.auth.FirebaseAuth

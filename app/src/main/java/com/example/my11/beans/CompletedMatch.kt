@@ -1,10 +1,10 @@
-package com.example.my11.DataClass
+package com.example.my11.beans
 
 import com.google.gson.annotations.SerializedName
 
 data class CompletedMatch(
 	val creditsLeft: Int? = null,
-	val data: Data? = null,
+	val data: ata? = null,
 	val cache3: Boolean? = null,
 	val provider: Provider? = null,
 	val V: String? = null,
@@ -43,7 +43,7 @@ data class ScoresItem(
 	val batsman:String?=null
 )
 
-data class Data(
+data class ata(
 	val batting: List<BattingItem?>? = null,
 	val tossWinnerTeam: String? = null,
 	val fielding: List<FieldingItem?>? = null,

@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.API.RetrofitInstance_NewMatch
-import com.example.my11.DataClass.Matche
-import com.example.my11.DataClass.NewMatch
+import com.example.my11.beans.Matche
+import com.example.my11.beans.NewMatch
 import com.example.my11.R
-import kotlinx.android.synthetic.main.fragment_future_match.*
 import kotlinx.android.synthetic.main.fragment_l_ive_match.*
 import retrofit2.Call
 import retrofit2.Response

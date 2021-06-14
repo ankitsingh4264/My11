@@ -1,4 +1,4 @@
-package com.example.my11.DataClass
+package com.example.my11.beans
 
 data class Squad (
     val squad : ArrayList<Team>
