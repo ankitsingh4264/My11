@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.my11.API.RetrofitInstance_NewMatch
+import com.example.my11.API.RetrofitInstance
 import com.example.my11.beans.Matche
 import com.example.my11.beans.NewMatch
 import com.example.my11.R
@@ -64,7 +64,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
     private fun getMatch() {
 
 
-        val res = RetrofitInstance_NewMatch.cricInstanceforNewMatchApi.matches(1)
+        val res = RetrofitInstance.cricInstance.matches(1)
         res.enqueue(object : retrofit2.Callback<NewMatch> {
             override fun onResponse(call: Call<NewMatch>, response: Response<NewMatch>) {
                 val result = response.body()?.matches

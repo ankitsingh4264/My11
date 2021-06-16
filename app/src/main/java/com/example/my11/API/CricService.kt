@@ -1,6 +1,7 @@
 package com.example.my11.API
 
 import com.example.my11.beans.CompletedMatch
+import com.example.my11.beans.NewMatch
 import com.example.my11.beans.Players
 import com.example.my11.beans.Squad
 import retrofit2.Call
@@ -11,7 +12,7 @@ import retrofit2.http.Query
 
 
 const val BASE_URL="https://cricapi.com/api/"
-const val API_KEY="NVvSuM2OIwPanROYT8QS2Y4ihwm1"
+const val API_KEY="06Yltmr68xaBEf7eBsHttOW1jPy2"
 interface CricService {
 
 
@@ -27,6 +28,10 @@ interface CricService {
     //https://cricapi.com/api/fantasySummary?apikey=NVvSuM2OIwPanROYT8QS2Y4ihwm1&unique_id=1254060
     @GET("fantasySummary?apikey=$API_KEY")
     fun getCompletedMatch(@Query("unique_id") id:String) :Call<CompletedMatch>
+
+    @GET("matches?apikey=$API_KEY")
+
+    fun  matches(@Query("page") page:Int): Call<NewMatch>
 
 }
  object RetrofitInstance{

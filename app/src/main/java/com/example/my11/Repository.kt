@@ -27,6 +27,7 @@ class Repository {
 //                 val map:HashMap<String,ArrayList<Players>> = HashMap();
                 val result=response.body();
                 val temp:ArrayList<Team> = ArrayList();
+                Log.i("jaasd",response.toString())
                 for (team in result!!.squad){
                     temp.add(team);
                 }
