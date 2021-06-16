@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CompletedMatch(
 	val creditsLeft: Int? = null,
-	val data: ata? = null,
+	val data: Details? = null,
 	val cache3: Boolean? = null,
 	val provider: Provider? = null,
 	val V: String? = null,
@@ -43,7 +43,7 @@ data class ScoresItem(
 	val batsman:String?=null
 )
 
-data class ata(
+data class Details(
 	val batting: List<BattingItem?>? = null,
 	val tossWinnerTeam: String? = null,
 	val fielding: List<FieldingItem?>? = null,
