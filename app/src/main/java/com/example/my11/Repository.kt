@@ -81,11 +81,13 @@ class Repository {
 
     fun userUpload(user: User) : MutableLiveData<Boolean> {
         val id = auth.currentUser!!.email
+        Log.i("luc",id)
         var pos:MutableLiveData<Boolean> = MutableLiveData()
 
         firestoreDB.collection("users").document(id).set(user).addOnSuccessListener {
             pos.value=true
         }.addOnFailureListener{
+            Log.e("fad",it.toString() )
             pos.value=false
         }
         return pos

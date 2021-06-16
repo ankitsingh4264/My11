@@ -22,6 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_login.*
+import java.util.logging.Level.INFO
 
 
 class LoginFragment : Fragment() {
@@ -112,12 +113,12 @@ class LoginFragment : Fragment() {
                     email=user.email
                     dp=user.photoUrl.toString()
                     //phoneNumber=user.phoneNumber
-//                    Log.i("raje",phonenumber!!)
+                     Log.i("raje",email!!)
 
                     loginmvvm.check(email)
                     loginmvvm.userexits.observe(viewLifecycleOwner,
-                            {
-                                if (it == true) {
+                            { b ->
+                                if (b == true) {
                                     view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
                                 } else {
                                     Log.i("rajeev",name+email+dp)
@@ -125,6 +126,7 @@ class LoginFragment : Fragment() {
                                     loginmvvm.adduser(use)
                                     loginmvvm.userAdded.observe(viewLifecycleOwner,
                                             {
+                                                Log.i("dasd",it.toString())
                                                 if (it == true)
                                                     view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
                                                 else
