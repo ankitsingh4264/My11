@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.my11.API.RetrofitInstance_NewMatch
-import com.example.my11.DataClass.Matche
-import com.example.my11.DataClass.NewMatch
+import com.example.my11.API.RetrofitInstance
+import com.example.my11.beans.Matche
+import com.example.my11.beans.NewMatch
 import com.example.my11.R
-import kotlinx.android.synthetic.main.fragment_future_match.*
 import kotlinx.android.synthetic.main.fragment_l_ive_match.*
 import retrofit2.Call
 import retrofit2.Response
@@ -44,7 +43,7 @@ class LiveMatchFragment : Fragment() {
     private fun getMatch() {
 
 
-        val res = RetrofitInstance_NewMatch.cricInstanceforNewMatchApi.matches(1)
+        val res = RetrofitInstance.cricInstance.matches(1)
         res.enqueue(object : retrofit2.Callback<NewMatch> {
             override fun onResponse(call: Call<NewMatch>, response: Response<NewMatch>) {
                 val result = response.body()?.matches

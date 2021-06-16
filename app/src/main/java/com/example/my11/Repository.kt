@@ -1,14 +1,11 @@
 package com.example.my11
 
-import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
-import com.example.my11.DataClass.*
-import com.google.firebase.Timestamp
+import com.example.my11.beans.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -30,6 +27,7 @@ class Repository {
 //                 val map:HashMap<String,ArrayList<Players>> = HashMap();
                 val result=response.body();
                 val temp:ArrayList<Team> = ArrayList();
+                Log.i("jaasd",response.toString())
                 for (team in result!!.squad){
                     temp.add(team);
                 }
@@ -84,11 +82,13 @@ class Repository {
 
     fun userUpload(user: User) : MutableLiveData<Boolean> {
         val id = auth.currentUser!!.email
+        Log.i("luc",id)
         var pos:MutableLiveData<Boolean> = MutableLiveData()
 
         firestoreDB.collection("users").document(id).set(user).addOnSuccessListener {
             pos.value=true
         }.addOnFailureListener{
+            Log.e("fad",it.toString() )
             pos.value=false
         }
         return pos

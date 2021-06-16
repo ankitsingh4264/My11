@@ -33,6 +33,7 @@ android {
         jvmTarget = '1.8'
     }
 }
+configurations { compile.exclude group: 'androidx.annotation', module: 'annotation' }
 
 dependencies {
 

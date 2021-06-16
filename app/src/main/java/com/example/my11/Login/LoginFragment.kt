@@ -8,14 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.example.my11.DataClass.User
+import com.example.my11.beans.User
 import com.example.my11.R
-import com.example.my11.Utils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -26,6 +23,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
+import java.util.logging.Level.INFO
 
 
 class LoginFragment : Fragment() {
@@ -118,12 +116,12 @@ class LoginFragment : Fragment() {
                     email=user.email
                     dp=user.photoUrl.toString()
                     //phoneNumber=user.phoneNumber
-//                    Log.i("raje",phonenumber!!)
+                     Log.i("raje",email!!)
 
                     loginmvvm.check(email)
                     loginmvvm.userexits.observe(viewLifecycleOwner,
-                            {
-                                if (it == true) {
+                            { b ->
+                                if (b == true) {
                                     view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
                                 } else {
                                     Log.i("rajeev",name+email+dp)
@@ -131,6 +129,7 @@ class LoginFragment : Fragment() {
                                     loginmvvm.adduser(use)
                                     loginmvvm.userAdded.observe(viewLifecycleOwner,
                                             {
+                                                Log.i("dasd",it.toString())
                                                 if (it == true)
                                                     view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
                                                 else

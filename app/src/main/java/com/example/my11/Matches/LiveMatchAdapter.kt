@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.my11.DataClass.Matche
+import com.example.my11.beans.Matche
 import com.example.my11.R
 import kotlinx.android.synthetic.main.list_of_future_match.view.*
 import java.text.ParseException

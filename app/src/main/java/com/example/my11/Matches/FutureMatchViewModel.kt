@@ -1,8 +1,6 @@
 package com.example.my11.Matches
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.my11.DataClass.User
 import com.example.my11.Repository
 
 class FutureMatchViewModel : ViewModel(){

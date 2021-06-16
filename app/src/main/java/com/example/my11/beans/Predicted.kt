@@ -1,4 +1,4 @@
-package com.example.my11.DataClass
+package com.example.my11.beans
 
 data class Predicted(
         var predictedPlayers: HashMap<String, Int>?= null,
