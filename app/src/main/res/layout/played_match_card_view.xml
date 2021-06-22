@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="140dp"
     android:id="@+id/cardViewFutureMatch"
     android:layout_margin="5dp">
 
@@ -19,7 +19,9 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/open_sans_bold"
+           android:gravity="center"
             android:textColor="#000000"
+
             android:textSize="15sp">
 
         </TextView>
@@ -29,6 +31,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentEnd="true"
+            android:gravity="center"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -79,6 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:text="+200"
+            android:paddingRight="8dp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat"
             android:textAlignment="center"
             android:textColor="#25ba38">
