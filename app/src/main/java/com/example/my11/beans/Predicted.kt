@@ -7,6 +7,7 @@ data class Predicted(
         var dateTimeGMT: String?="",
         var winnerTeam: String?="",
         var team1:String?="",
-        var team2:String?=""
+        var team2:String?="",
+        var points:Int=0
 
 )

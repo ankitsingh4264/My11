@@ -9,8 +9,9 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-       android:id="@+id/appb"
+        android:id="@+id/appb"
         android:layout_height="wrap_content">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,13 +28,59 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="MY11"
+                android:paddingLeft="8dp"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/montserrat_bold"
                 android:textSize="25sp">
 
+
             </TextView>
 
+
+
+        <TextView
+            android:id="@+id/toolbar_pts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="699"
+            android:paddingRight="8dp"
+            android:layout_gravity="end"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="18sp">
+
+        </TextView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:layout_gravity="end">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/trophy"
+            ></androidx.appcompat.widget.AppCompatImageView>
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
     </androidx.appcompat.widget.Toolbar>
+
+
+
+
 
 </com.google.android.material.appbar.AppBarLayout>
 
@@ -59,6 +106,8 @@
         app:menu="@menu/bottom_menu"
 
         ></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
 

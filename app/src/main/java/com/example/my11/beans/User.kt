@@ -4,5 +4,6 @@ data class User(
     val name:String?="",
     val email:String?="",
     val picture:String?="",
-    val phone:String?=""
+    val phone:String?="",
+    var totalPoints:Int=0,
 )
