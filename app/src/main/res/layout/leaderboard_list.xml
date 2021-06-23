@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="35dp"
     android:layout_margin="5dp">
 
     <RelativeLayout
@@ -18,14 +18,14 @@
             android:text="RAJEEV SACHAN"
             android:textColor="#000000"
             android:textAlignment="gravity"
-            android:textSize="20sp"
-            android:fontFamily="@font/open_sans_extrabold">
+            android:textSize="15sp"
+            android:fontFamily="@font/open_sans_semibold">
         </TextView>
 
         <ImageView
             android:id="@+id/leaderboard_trophy"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="65dp"
             android:layout_marginTop="5dp"
@@ -42,8 +42,8 @@
             android:text="100"
             android:textColor="#000000"
             android:textAlignment="textEnd"
-            android:textSize="20sp"
-            android:fontFamily="@font/open_sans_extrabold">
+            android:textSize="15sp"
+            android:fontFamily="@font/open_sans_semibold">
 
         </TextView>
 

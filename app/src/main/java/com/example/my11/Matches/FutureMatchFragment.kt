@@ -77,11 +77,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
 
                     if (!result.get(i).matchStarted && result?.get(i).squad)
                     {
-                        if(played_matchList.contains(result?.get(i).unique_id))
-                        {
-
-                        }
-                         FutureMatch.add(result.get(i))
+                        FutureMatch.add(result.get(i))
                     }
 
 

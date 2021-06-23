@@ -10,8 +10,11 @@ import com.example.my11.API.RetrofitInstance
 import com.example.my11.beans.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
+import org.w3c.dom.Document
 import retrofit2.Call
 import retrofit2.Response
 
@@ -116,7 +119,23 @@ class Repository {
         val id= auth.currentUser?.email
         if (id==null) return data
         firestoreDB.collection("users").document(id!!).get().addOnSuccessListener {
+            //Log.i("lakki",it.toObject(User::class.java).toString())
             data.value=it.toObject(User::class.java)
+        }
+        return data
+    }
+
+    fun get_top_user():MutableLiveData<ArrayList<User>>{
+        var data:MutableLiveData<ArrayList<User>> = MutableLiveData()
+        val list = ArrayList<User>()
+        firestoreDB.collection("users").orderBy("totalPoints",Query.Direction.DESCENDING).limit(2).get().addOnSuccessListener {
+            for (i in 1 ..it!!.documents.size) {
+                //Log.i("lakki",it.documents[0].toObject(User::class.java).toString())
+                list.add(it.documents[i-1].toObject(User::class.java)!!)
+            }
+
+
+            data.value = list
         }
         return data
     }
