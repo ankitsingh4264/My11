@@ -49,8 +49,8 @@ class LiveMatchFragment : Fragment() {
                 val result = response.body()?.matches
                 //Log.i("raj", result.toString())
 
-                for (i in 0..result!!.size - 1) {
-                    if (result?.get(i).matchStarted && result?.get(i).winner_team==null) {
+                for (i in result!!.indices) {
+                    if (result.get(i).matchStarted && result?.get(i).winner_team==null) {
                         LiveMatch.add(result?.get(i))
                     }
                 }
@@ -66,3 +66,5 @@ class LiveMatchFragment : Fragment() {
     }
 
 }
+
+//aa rha

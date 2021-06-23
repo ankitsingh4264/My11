@@ -1,11 +1,14 @@
 package com.example.my11
 
+import android.annotation.TargetApi
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
 import com.example.my11.beans.*
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -125,10 +128,7 @@ class Repository {
         firestoreDB.collection("users").document(email)
                 .get().addOnSuccessListener {
 
-                    if(it.toObject(User::class.java) !=null)
-                        isUserExist.value = true
-                    else
-                        isUserExist.value = false
+                isUserExist.value = it.toObject(User::class.java) !=null
                 }.addOnFailureListener {
                     isUserExist.value = false
                 }
@@ -172,16 +172,17 @@ class Repository {
         val arr :ArrayList<Predicted> = ArrayList();
         var result=0;
         for (mat in list){
-//            if (mat.dateTimeGMT!!.substring(5,7).toInt()>Timestamp.now().toDate().month && mat.dateTimeGMT!!.substring(8,10).toInt()>Timestamp.now().toDate().day ){
-//                result++;
-//                continue
-//
-//            }
+            if (mat.dateTimeGMT!!.substring(5,7).toInt()> Timestamp.now().toDate().month && mat.dateTimeGMT!!.substring(8,10).toInt()>Timestamp.now().toDate().day ){
+                result++;
+                continue
+
+            }
 
 
             val playres=retrofitCric.getCompletedMatch(mat.matchId)
 
             playres.enqueue(object : retrofit2.Callback<CompletedMatch>{
+                @TargetApi(Build.VERSION_CODES.N)
                 override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
                     val p: CompletedMatch? =response.body()
                     result++;
@@ -193,8 +194,8 @@ class Repository {
                           for (players in item!!.scores!!){
                               val id=players!!.pid!!
                               val runs=players.R!!.toInt()
-                              if (mat.predictedPlayers!!.containsKey(id)){
-                                  mat.predictedPlayers!![id] = runs
+                              if (mat.predictedPlayers.containsKey(id)){
+                                  mat.predictedPlayers[id] = runs
                               }
                           }
 
@@ -204,8 +205,8 @@ class Repository {
                         for (players in item!!.scores!!){
                             val id=players!!.pid!!
                             val wkts=players.W!!.toInt()*50
-                            if (mat.predictedPlayers!!.containsKey(id)){
-                                mat.predictedPlayers!![id] = wkts
+                            if (mat.predictedPlayers.containsKey(id)){
+                                mat.predictedPlayers.put(id,mat.predictedPlayers.getOrDefault(id,0)+wkts)
                             }
                         }
 

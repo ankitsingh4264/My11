@@ -1,7 +1,7 @@
 package com.example.my11.beans
 
 data class Predicted(
-        var predictedPlayers: HashMap<String, Int>?= null,
+        var predictedPlayers: HashMap<String, Int> = HashMap(),
         var predictedTeam: String = "",
         var matchId: String = "",
         var dateTimeGMT: String?="",
