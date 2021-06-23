@@ -5,9 +5,9 @@
     <item android:title="Home"
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home_24" />
-    <item android:title="Play"
-        android:id="@+id/play"
-        android:icon="@drawable/ic_sports_cricket_24" />
+    <item android:title="Leaderboard"
+        android:id="@+id/leaderboardFragment"
+        android:icon="@drawable/trophy" />
     <item android:title="Profile"
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person_24" />

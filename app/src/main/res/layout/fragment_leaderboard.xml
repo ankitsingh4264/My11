@@ -11,16 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/leaderboard_toolbar"
-        android:background="#930202">
+        android:background="#FFFFFF">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:text="LEADERBOARD"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="25sp">
+            android:textColor="#930202"
+            android:fontFamily="@font/montserrat"
+            android:textSize="20sp">
 
         </TextView>
     </RelativeLayout>

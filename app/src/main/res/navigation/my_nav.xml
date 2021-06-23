@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homeFragment_to_play"
             app:destination="@id/play" />
+        <action
+            android:id="@+id/action_homeFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/playedMatchFragment"
@@ -76,6 +79,15 @@
         tools:layout="@layout/fragment_completed" >
         <action
             android:id="@+id/action_completed_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.example.my11.Leaderboard.LeaderboardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" >
+        <action
+            android:id="@+id/action_leaderboardFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
