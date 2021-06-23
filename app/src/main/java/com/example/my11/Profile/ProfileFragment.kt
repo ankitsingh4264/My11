@@ -87,6 +87,7 @@ class ProfileFragment : Fragment() {
         profilemvvm.getcurruser()
         profilemvvm.curruser.observe(viewLifecycleOwner,
                 Observer {
+
                     txt_id.text = it!!.email
                     edt_name.setText(it!!.name)
                     txtname.text = it!!.name
