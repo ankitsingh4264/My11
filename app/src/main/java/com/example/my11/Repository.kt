@@ -10,6 +10,7 @@ import com.example.my11.API.RetrofitInstance
 import com.example.my11.beans.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import retrofit2.Call
@@ -113,10 +114,12 @@ class Repository {
 
     fun getuser():MutableLiveData<User>{
         val data:MutableLiveData<User> = MutableLiveData()
-        val id= auth.currentUser?.email
-        if (id==null) return data
+
+
+        val id= auth.currentUser?.email ?: return data
         firestoreDB.collection("users").document(id!!).get().addOnSuccessListener {
             data.value=it.toObject(User::class.java)
+            currUser= data.value!!;
         }
         return data
     }
@@ -177,6 +180,17 @@ class Repository {
                 continue
 
             }
+            if (!mat.winnerTeam!!.isEmpty()){
+                result++;
+                arr.add(mat)
+
+                if (result==list.size) {
+
+                    res.value=arr;
+                }
+                continue
+            }
+
 
 
             val playres=retrofitCric.getCompletedMatch(mat.matchId)
@@ -187,8 +201,10 @@ class Repository {
                     val p: CompletedMatch? =response.body()
                     result++;
 
+
                    if (p!!.data!=null)
                     Log.i("ankit",p.data!!.winner_team.toString())
+                    var totalMatchPoints=0;
                    //batting pts
                    for (item in p.data!!.batting!!){
                           for (players in item!!.scores!!){
@@ -196,6 +212,7 @@ class Repository {
                               val runs=players.R!!.toInt()
                               if (mat.predictedPlayers.containsKey(id)){
                                   mat.predictedPlayers[id] = runs
+                                  totalMatchPoints+=runs;
                               }
                           }
 
@@ -207,23 +224,35 @@ class Repository {
                             val wkts=players.W!!.toInt()*50
                             if (mat.predictedPlayers.containsKey(id)){
                                 mat.predictedPlayers.put(id,mat.predictedPlayers.getOrDefault(id,0)+wkts)
+                                totalMatchPoints+=wkts;
                             }
                         }
 
                     }
                     mat.winnerTeam=p.data.winner_team!!
+                    mat.points=totalMatchPoints
+                    firestoreDB.runBatch{
+                        firestoreDB.collection("users").document(auth.currentUser.email).update("totalPoints",FieldValue.increment(mat.points.toLong()))
+                        firestoreDB.collection("users").document(auth.currentUser.email).collection("Predicted").document(mat.matchId).set(mat)
 
-                    //update in firebase
-                    firestoreDB.collection("users").document(auth.currentUser.email).collection("Predicted").document(mat.matchId).set(mat)
+                    }.addOnCanceledListener {
+                        arr.add(mat)
 
+                        if (result==list.size) {
 
+                            res.value=arr;
+                        }
 
-                    arr.add(mat)
-
-                    if (result==list.size) {
-
-                        res.value=arr;
                     }
+
+//                    //update totalPoints
+//                    firestoreDB.collection("users").document(auth.currentUser.email).update("totalPoints",FieldValue.increment(mat.points.toLong()))
+//
+//                    //update in firebase
+//                    firestoreDB.collection("users").document(auth.currentUser.email).collection("Predicted").document(mat.matchId).set(mat)
+
+
+
 
                 }
                 override fun onFailure(call: Call<CompletedMatch>, t: Throwable) {

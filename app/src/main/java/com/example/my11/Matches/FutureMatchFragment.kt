@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,6 +60,12 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
 
         getMatch()
 
+        //get current user
+        futuremvvm.getCurrentUser()
+        futuremvvm.curruser.observe(requireActivity(), Observer {
+            activity?.toolbar_pts!!.text= it.totalPoints.toString()
+        })
+
     }
 
     private fun getMatch() {
@@ -75,13 +82,13 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
                 for (i in result!!.indices) {
                     //Log.i("lala", email)
 
-                    if (!result.get(i).matchStarted && result?.get(i).squad)
+                    if (!result.get(i).matchStarted && result.get(i).squad)
                     {
-                        if(played_matchList.contains(result?.get(i).unique_id))
+                        if(played_matchList.contains(result.get(i).unique_id))
                         {
 
                         }
-                         FutureMatch.add(result.get(i))
+                         FutureMatch.add(result[i])
                     }
 
 
