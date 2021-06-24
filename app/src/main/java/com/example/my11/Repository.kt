@@ -11,6 +11,7 @@ import com.example.my11.beans.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
@@ -193,8 +194,21 @@ class Repository {
         for (mat in list){
             if (mat.dateTimeGMT!!.substring(5,7).toInt()> Timestamp.now().toDate().month && mat.dateTimeGMT!!.substring(8,10).toInt()>Timestamp.now().toDate().day ){
                 result++;
+                if (result==list.size) {
+                    res.value=arr;
+                }
                 continue
 
+            }
+            if (!mat.winnerTeam!!.isEmpty()){
+                result++;
+                arr.add(mat)
+
+                if (result==list.size) {
+
+                    res.value=arr;
+                }
+                continue
             }
 
 
@@ -209,12 +223,14 @@ class Repository {
                    if (p!!.data!=null)
                     Log.i("ankit",p.data!!.winner_team.toString())
                    //batting pts
+                    var totalPoints=0;
                    for (item in p.data!!.batting!!){
                           for (players in item!!.scores!!){
                               val id=players!!.pid!!
                               val runs=players.R!!.toInt()
                               if (mat.predictedPlayers.containsKey(id)){
                                   mat.predictedPlayers[id] = runs
+                                  totalPoints+=runs
                               }
                           }
 
@@ -226,23 +242,35 @@ class Repository {
                             val wkts=players.W!!.toInt()*50
                             if (mat.predictedPlayers.containsKey(id)){
                                 mat.predictedPlayers.put(id,mat.predictedPlayers.getOrDefault(id,0)+wkts)
+                                totalPoints+=wkts
                             }
                         }
 
                     }
                     mat.winnerTeam=p.data.winner_team!!
+                    //settting total match points
+                    mat.points=totalPoints
 
-                    //update in firebase
-                    firestoreDB.collection("users").document(auth.currentUser.email).collection("Predicted").document(mat.matchId).set(mat)
+                    firestoreDB.runBatch{
+                        //updting after fetching results
+                        firestoreDB.collection("users").document(auth.currentUser.email).collection("Predicted").document(mat.matchId).set(mat)
+                        firestoreDB.collection("users").document(auth.currentUser.email).update("totalPoints",FieldValue.increment(totalPoints.toLong()))
+                    }.addOnSuccessListener {
 
+                        arr.add(mat)
 
+                        if (result==list.size) {
 
-                    arr.add(mat)
-
-                    if (result==list.size) {
-
-                        res.value=arr;
+                            res.value=arr;
+                        }
                     }
+
+
+
+
+
+
+
 
                 }
                 override fun onFailure(call: Call<CompletedMatch>, t: Throwable) {
