@@ -219,8 +219,14 @@ class Repository {
                 override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
                     val p: CompletedMatch? =response.body()
                     result++;
-                    if (p!!.data!!.winner_team!!.isEmpty()){
-                        result++;
+                    if(p!!.data!!.winner_team==null)
+                    {
+                        if (result==list.size) {
+
+                            res.value=arr;
+                        }
+                    }
+                    else if (p!!.data!!.winner_team!!.isEmpty()){
                         if (result==list.size) {
 
                             res.value=arr;
