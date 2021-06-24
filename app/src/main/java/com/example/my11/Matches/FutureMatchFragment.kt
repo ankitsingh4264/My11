@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,6 +59,11 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
         recycler_future_match.layoutManager= LinearLayoutManager(context)
 
         getMatch()
+
+        futuremvvm.getCurrentUser()
+        futuremvvm.curruser.observe(requireActivity(), Observer {
+            activity?.toolbar_pts!!.text=it.totalPoints.toString()
+        })
 
     }
 
