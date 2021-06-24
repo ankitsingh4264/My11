@@ -25,8 +25,12 @@ class LeaderboardAdapter (val list: ArrayList<User>) : RecyclerView.Adapter<view
     }
 }
 class viewholder1(itemView: View) : RecyclerView.ViewHolder(itemView){
+    var c:Int=0
+
     fun bind(data: User) {
+
         with(itemView){
+            serial_number_leaderboard.text=(adapterPosition+1).toString()
             name_leaderboard.text=data!!.name
             score_leaderboard.text=data!!.totalPoints.toString()
         }

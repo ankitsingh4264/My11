@@ -75,16 +75,16 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
                 for (i in result!!.indices) {
                     //Log.i("lala", email)
 
-                    if (!result.get(i).matchStarted && result?.get(i).squad)
+                    if (!result[i].matchStarted && result?.get(i).squad)
                     {
-                        FutureMatch.add(result.get(i))
+                        FutureMatch.add(result[i])
                     }
 
 
 
                 }
                 val mAdapter = FutureMatchAdapter(FutureMatch,this@FutureMatchFragment)
-                recycler_future_match.adapter = mAdapter
+                recycler_future_match!!.adapter = mAdapter
             }
 
             override fun onFailure(call: Call<NewMatch>, t: Throwable) {

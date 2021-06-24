@@ -59,11 +59,6 @@ class LeaderboardFragment : Fragment() {
             val mAdapter = LeaderboardAdapter(it)
             leaderboard_rv.apply {
                 adapter=mAdapter
-                layoutManager = LinearLayoutManager(
-                    requireContext(),
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
 
 
             }
