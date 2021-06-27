@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.my11.beans.User
 import com.example.my11.R
+import com.example.my11.Utils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -115,6 +116,11 @@ class LoginFragment : Fragment() {
                     name=user.displayName
                     email=user.email
                     dp=user.photoUrl.toString()
+
+                    Utils.user_name=name
+                    Utils.user_email=email
+                    Utils.user_dp=user.photoUrl
+
                     //phoneNumber=user.phoneNumber
                      Log.i("raje",email!!)
 

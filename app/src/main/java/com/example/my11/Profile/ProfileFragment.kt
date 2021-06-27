@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.my11.R
+import com.example.my11.Utils
 import com.example.my11.Utils.latitude
 import com.example.my11.Utils.longitude
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -58,6 +59,8 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        profilemvvm= ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -82,10 +85,18 @@ class ProfileFragment : Fragment() {
 
         location.text = result
 
-        profilemvvm= ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+        txt_id.text = Utils.user_email
+        edt_name.setText(Utils.user_name)
+        txtname.text = Utils.user_name
 
-        profilemvvm.getcurruser()
-        profilemvvm.curruser.observe(viewLifecycleOwner,
+        Glide.with(this).load(Utils.user_dp)
+            .into(cover_dp)
+        Glide.with(this).load(Utils.user_dp)
+            .into(img_dp)
+        if(Utils.user_email==null || Utils.user_name==null || Utils.user_dp==null)
+        {
+            profilemvvm.getcurruser()
+            profilemvvm.curruser.observe(viewLifecycleOwner,
                 Observer {
 
                     txt_id.text = it!!.email
@@ -96,16 +107,19 @@ class ProfileFragment : Fragment() {
                     if (it.picture != null && it?.picture != "") {
 
                         Glide.with(this).load(it?.picture)
-                                .into(img_dp)
+                            .into(img_dp)
 
                     }
                     if (it.picture != null && it?.picture != "") {
 
                         Glide.with(this).load(it?.picture)
-                                .into(cover_dp)
+                            .into(cover_dp)
 
                     }
                 })
+        }
+
+
 
 
         save_button.setOnClickListener {
@@ -115,14 +129,14 @@ class ProfileFragment : Fragment() {
             }
             else
             {
-                val phoneNo = edt_phn.text.toString()
-                val name = edt_name.text.toString()
-                profilemvvm.updatecurruser(name,phoneNo)
+                Utils.user_number = edt_phn.text.toString()
+                Utils.user_name = edt_name.text.toString()
+                profilemvvm.updatecurruser(Utils.user_name!!, Utils.user_number!!)
                 profilemvvm.updatedcurruser.observe(viewLifecycleOwner,
                         {
                             if(it==true)
                             {
-                                txtname.text=name
+                                txtname.text=Utils.user_name
                             }
                         })
             }
@@ -133,10 +147,6 @@ class ProfileFragment : Fragment() {
             if(takepermissions())
             {
                 choosePhotofromGallery(STORAGE_REQUEST_CODE)
-
-
-
-
             }
         }
 
@@ -206,10 +216,11 @@ class ProfileFragment : Fragment() {
                             if(it==true)
                             {
                                 Log.i("jja", dpURI.toString())
+                                Utils.user_dp= dpURI
                                 Glide.with(this).load(dpURI)
-                                        .into(cover_dp)
+                                    .into(cover_dp)
                                 Glide.with(this).load(dpURI)
-                                        .into(img_dp)
+                                    .into(img_dp)
                             }
                         })
             }
