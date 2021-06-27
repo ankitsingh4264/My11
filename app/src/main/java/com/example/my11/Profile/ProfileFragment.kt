@@ -123,9 +123,14 @@ class ProfileFragment : Fragment() {
 
 
         save_button.setOnClickListener {
-            if(edt_name.text==null && edt_phn.text==null)
+            if(edt_phn.text.toString().length!=10)
             {
-                return@setOnClickListener
+                edt_phn.error = "fill 10 digits"
+            }
+            else if(edt_phn.text.toString().length==10 && edt_name.text.toString().isBlank())
+            {
+                txtname.text=Utils.user_name
+                edt_name.setText(Utils.user_name)
             }
             else
             {
