@@ -1,12 +1,13 @@
 package com.example.my11
 
+import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -21,6 +22,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,9 +40,44 @@ class MainActivity : AppCompatActivity() {
             getLoction()
 
             setupNav()
+        setAlarm()
+
+
 
 
     }
+
+
+
+    private fun setAlarm(){
+
+        val timeTrigger=System.currentTimeMillis()
+
+        val intent = Intent(this,MyBroadCastReceiver::class.java)
+        val pendingIntent= PendingIntent.getBroadcast(this,7,intent,0)
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        alarmManager.setRepeating(AlarmManager.RTC,timeTrigger,AlarmManager.INTERVAL_DAY,pendingIntent)
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private fun getLoction() {
         Dexter.withContext(this)
@@ -58,6 +96,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }).check()
     }
+
+
+
 
     private fun updateLocation() {
         buildLocationRequest()

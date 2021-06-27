@@ -226,14 +226,14 @@ class Repository {
                             res.value=arr;
                         }
                     }
-                    else if (p!!.data!!.winner_team!!.isEmpty()){
+                    else if (p.data!!.winner_team!!.isEmpty()){
                         if (result==list.size) {
 
                             res.value=arr;
                         }
 
                     }else {
-                        if (p!!.data != null)
+                        if (p.data != null)
                             Log.i("ankit", p.data!!.winner_team.toString())
                         //batting pts
                         var totalPoints = 0;
