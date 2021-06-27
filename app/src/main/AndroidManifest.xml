@@ -15,6 +15,10 @@
         android:theme="@style/splashScreenTheme">
         <receiver
             android:name=".MyLocationService"></receiver>
+        <receiver android:name=".MyBroadCastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            ></receiver>
 
         <activity
             android:name=".MainActivity"
