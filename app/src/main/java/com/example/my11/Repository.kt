@@ -51,7 +51,7 @@ class Repository {
         return data
     }
     fun getPlayerDetails(players: ArrayList<Players>) : MutableLiveData<ArrayList<Players>>{
-          val res:MutableLiveData<ArrayList<Players>> = MutableLiveData()
+        val res:MutableLiveData<ArrayList<Players>> = MutableLiveData()
         val arr :ArrayList<Players> = ArrayList();
         for (player in players){
 
@@ -59,32 +59,32 @@ class Repository {
 
             playres.enqueue(object : retrofit2.Callback<Players>{
                 override fun onResponse(call: Call<Players>, response: Response<Players>) {
-                                val p: Players? =response.body()
+                    val p: Players? =response.body()
 
 
 
-                                  arr.add(p!!)
-                                    Log.i("ankit",""+ arr.size+" "+players.size)
+                    arr.add(p!!)
+                    Log.i("ankit",""+ arr.size+" "+players.size)
 
 //                                arr.add(Players(player.pid,player.name,
 //                                    response.body()?.playingRole,response.body().bowling,response.bo
 //                                ))
-                                if (arr.size==players.size) {
+                    if (arr.size==players.size) {
 
-                                    res.value=arr;
-                                }
+                        res.value=arr;
+                    }
 
                 }
                 override fun onFailure(call: Call<Players>, t: Throwable) {
                     Log.i("ankit",t.message.toString())
 
-                    }
+                }
             })
         }
         return  res
 
 
-        }
+    }
 
 
     fun userUpload(user: User) : MutableLiveData<Boolean> {
@@ -105,12 +105,12 @@ class Repository {
         var pos:MutableLiveData<Boolean> = MutableLiveData()
 
         firestoreDB.collection("users").document(id)
-                .update(mapOf(
-                        "name" to name,
-                        "phone" to phone
-                ))
-                .addOnSuccessListener { pos.value=true }
-                .addOnFailureListener { pos.value=false }
+            .update(mapOf(
+                "name" to name,
+                "phone" to phone
+            ))
+            .addOnSuccessListener { pos.value=true }
+            .addOnFailureListener { pos.value=false }
         return pos
     }
 
@@ -146,12 +146,12 @@ class Repository {
         val isUserExist: MutableLiveData<Boolean> = MutableLiveData()
 
         firestoreDB.collection("users").document(email)
-                .get().addOnSuccessListener {
+            .get().addOnSuccessListener {
 
                 isUserExist.value = it.toObject(User::class.java) !=null
-                }.addOnFailureListener {
-                    isUserExist.value = false
-                }
+            }.addOnFailureListener {
+                isUserExist.value = false
+            }
 
         return isUserExist
     }
@@ -308,7 +308,7 @@ class Repository {
         firestoreDB.collection("users").document(email).collection("Predicted").get().addOnSuccessListener {
             //Log.i("TAG", it.toString())
 
-                    for (document in it) {
+            for (document in it) {
                 Log.i("TAG", "${document.id}")
                 list.add(document.id.toString())
             }

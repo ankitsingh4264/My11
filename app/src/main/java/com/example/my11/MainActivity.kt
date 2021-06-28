@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -51,12 +52,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun setAlarm(){
 
-        val timeTrigger=System.currentTimeMillis()
+        //val timeTrigger=System.currentTimeMillis()+10*1000
 
         val intent = Intent(this,MyBroadCastReceiver::class.java)
         val pendingIntent= PendingIntent.getBroadcast(this,7,intent,0)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        alarmManager.setRepeating(AlarmManager.RTC,timeTrigger,AlarmManager.INTERVAL_DAY,pendingIntent)
+
+//        val calendar = Calendar.getInstance()
+//        calendar[Calendar.HOUR_OF_DAY] = 16
+//        calendar[Calendar.MINUTE] = 12
+//        calendar[Calendar.SECOND] = 0
+        val alarmStartTime = Calendar.getInstance()
+        //val now = Calendar.getInstance()
+        alarmStartTime[Calendar.HOUR_OF_DAY] = 23
+        alarmStartTime[Calendar.MINUTE] = 19
+        alarmStartTime[Calendar.SECOND] = 0
+//        if (now.after(alarmStartTime)) {
+////            Log.d("Hey", "Added a day")
+//            alarmStartTime.add(Calendar.DATE, 1)
+//        }
+
+        alarmManager.setRepeating(AlarmManager.RTC,alarmStartTime.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
 
 
     }
