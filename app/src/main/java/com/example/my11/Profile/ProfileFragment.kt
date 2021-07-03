@@ -85,12 +85,12 @@ class ProfileFragment : Fragment() {
 
         location.text = result
 
-        txt_id.text = Utils.user_email
-        edt_name.setText(Utils.user_name)
+        email.text = Utils.user_email
+        txtname.setText(Utils.user_name)
         txtname.text = Utils.user_name
 
-        Glide.with(this).load(Utils.user_dp)
-            .into(cover_dp)
+//        Glide.with(this).load(Utils.user_dp)
+//            .into(cover_dp)
         Glide.with(this).load(Utils.user_dp)
             .into(img_dp)
         if(Utils.user_email==null || Utils.user_name==null || Utils.user_dp==null)
@@ -99,54 +99,54 @@ class ProfileFragment : Fragment() {
             profilemvvm.curruser.observe(viewLifecycleOwner,
                 Observer {
 
-                    txt_id.text = it!!.email
-                    edt_name.setText(it!!.name)
+                    email.text = it!!.email
+                    txtname.setText(it!!.name)
                     txtname.text = it!!.name
                     if(it.phone!=null)
-                        edt_phn.setText(it.phone)
+                        phone.setText(it.phone)
                     if (it.picture != null && it?.picture != "") {
 
                         Glide.with(this).load(it?.picture)
                             .into(img_dp)
 
                     }
-                    if (it.picture != null && it?.picture != "") {
-
-                        Glide.with(this).load(it?.picture)
-                            .into(cover_dp)
-
-                    }
+//                    if (it.picture != null && it?.picture != "") {
+//
+//                        Glide.with(this).load(it?.picture)
+//                            .into(cover_dp)
+//
+//                    }
                 })
         }
 
 
 
 
-        save_button.setOnClickListener {
-            if(edt_phn.text.toString().length!=10)
-            {
-                edt_phn.error = "fill 10 digits"
-            }
-            else if(edt_phn.text.toString().length==10 && edt_name.text.toString().isBlank())
-            {
-                txtname.text=Utils.user_name
-                edt_name.setText(Utils.user_name)
-            }
-            else
-            {
-                Utils.user_number = edt_phn.text.toString()
-                Utils.user_name = edt_name.text.toString()
-                profilemvvm.updatecurruser(Utils.user_name!!, Utils.user_number!!)
-                profilemvvm.updatedcurruser.observe(viewLifecycleOwner,
-                        {
-                            if(it==true)
-                            {
-                                txtname.text=Utils.user_name
-                            }
-                        })
-            }
-
-        }
+//        save_button.setOnClickListener {
+//            if(edt_phn.text.toString().length!=10)
+//            {
+//                edt_phn.error = "fill 10 digits"
+//            }
+//            else if(edt_phn.text.toString().length==10 && edt_name.text.toString().isBlank())
+//            {
+//                txtname.text=Utils.user_name
+//                edt_name.setText(Utils.user_name)
+//            }
+//            else
+//            {
+//                Utils.user_number = edt_phn.text.toString()
+//                Utils.user_name = edt_name.text.toString()
+//                profilemvvm.updatecurruser(Utils.user_name!!, Utils.user_number!!)
+//                profilemvvm.updatedcurruser.observe(viewLifecycleOwner,
+//                        {
+//                            if(it==true)
+//                            {
+//                                txtname.text=Utils.user_name
+//                            }
+//                        })
+//            }
+//
+//        }
 
         edit_dp.setOnClickListener {
             if(takepermissions())
@@ -155,7 +155,7 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        logout.setOnClickListener {
+        rl_logout.setOnClickListener {
             signOut()
         }
     }
@@ -222,8 +222,8 @@ class ProfileFragment : Fragment() {
                             {
                                 Log.i("jja", dpURI.toString())
                                 Utils.user_dp= dpURI
-                                Glide.with(this).load(dpURI)
-                                    .into(cover_dp)
+//                                Glide.with(this).load(dpURI)
+//                                    .into(cover_dp)
                                 Glide.with(this).load(dpURI)
                                     .into(img_dp)
                             }

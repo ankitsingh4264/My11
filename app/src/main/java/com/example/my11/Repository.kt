@@ -15,6 +15,12 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import org.w3c.dom.Document
 import retrofit2.Call
 import retrofit2.Response
@@ -184,6 +190,29 @@ class Repository {
                 temp.add(k!!)
             }
             matches.value=temp
+        }
+        return matches
+    }
+    suspend fun getPredictedMatchesSuspend(): ArrayList<Predicted> {
+        val email=auth.currentUser.email
+
+        val matches:ArrayList<Predicted> = ArrayList()
+
+        GlobalScope.launch (IO)
+        {
+            firestoreDB.collection("users").document(email).collection("Predicted").get().await()
+        }
+        firestoreDB.collection("users").document(email).collection("Predicted").get().addOnSuccessListener {
+            val temp:ArrayList<Predicted> = ArrayList()
+            for (data in it.documents){
+
+
+                val k=data.toObject(Predicted::class.java)
+
+//                if (k!!.dateTimeGMT > Timestamp.now().toDate())   //todo
+                temp.add(k!!)
+            }
+//            matches.value=temp
         }
         return matches
     }

@@ -10,13 +10,13 @@
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/cover_dp"
-        android:alpha="0.4"
-        android:foreground=" #80000000"
+        android:alpha="0.8"
+        android:foreground=" #30000000"
 
         android:layout_width="match_parent"
         android:layout_height="200dp"
 
-        android:src="@drawable/dp"
+        android:src="@drawable/cover_background"
         ></ImageView>
 
 </RelativeLayout>
@@ -28,212 +28,261 @@
         android:layout_marginTop="160dp"
         android:background="@drawable/round_corner_top"
         >
-        <TextView
-            android:id="@+id/txtname"
-            android:layout_width="wrap_content"
+
+        <RelativeLayout
+            android:id="@+id/rl_name_location"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="8dp"
-            android:textSize="18sp"
-            android:text="MS DHONI"
-            android:textStyle="bold"
-            ></TextView>
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtname"
-            android:layout_marginLeft="158dp"
-            android:drawableLeft="@drawable/ic_baseline_location_on_24"
-            android:text="Delhi,India"
-            ></com.google.android.material.textview.MaterialTextView>
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/profile_cover_background">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtname"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Rajeev"
+                android:textAllCaps="true">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/location"
+                android:layout_marginTop="30dp"
+                android:textSize="13sp"
+                android:padding="10dp"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:fontFamily="@font/montserrat"
+                android:text="Delhi">
+            </TextView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/profile_cover_background">
+            <ImageView
+                android:id="@+id/trophies_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/trophy">
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/trophies"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="000">
+            </TextView>
+        </RelativeLayout>
+
+
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/location"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_name_location"
             >
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_id"
-            android:layout_below="@+id/location"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="20dp"
-            android:text="singh.ankit2117@gmail.com"
-            android:textColor="#5a5a5a"
-            tools:ignore="NotSibling"></com.google.android.material.textview.MaterialTextView>
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_cups"
-            android:layout_below="@+id/txt_id"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="121 Trophies"
-            android:drawableEnd="@drawable/ic_yellow_trphy"
-            android:autofillHints="Total Trophies Won"
-            android:textColor="#5a5a5a"
-            ></com.google.android.material.textview.MaterialTextView>
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_wins"
-            android:layout_below="@+id/txt_cups"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:text="92.2% wins"
-            android:drawableEnd="@drawable/ic_baseline_outlined_flag_24"
-            android:hint="Match Won"
-            android:textColor="#5a5a5a"
-            ></com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_section"
-            android:layout_below="@id/txt_wins"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:drawableEnd="@drawable/ic_edit"
-            android:focusable="false"
-            android:text="EDIT"
-            ></com.google.android.material.textfield.TextInputEditText>
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/edit_section"
-                    android:layout_marginHorizontal="32dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@android:color/transparent"
-                    android:hint="your name"
-                    android:text="MS DHONI"
-
-                    android:textSize="13sp"></com.google.android.material.textfield.TextInputEditText>
-
-                <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edt_name"
-            android:id="@+id/edt_phn"
-
-            android:textSize="13sp"
-            android:inputType="number"
-
-            android:background="@android:color/transparent"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="12dp"
-            android:hint="+91"
-            ></com.google.android.material.textfield.TextInputEditText>
 
                 <RelativeLayout
-                    android:id="@+id/save_button"
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/red_border"
-                    android:layout_below="@+id/edt_phn"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginVertical="5dp">
+                    android:id="@+id/rl_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/profile_cover_background">
+                    <ImageView
+                        android:id="@+id/email_image"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/gmail">
+                    </ImageView>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Save"
-                        android:textColor="#930202"
-                        android:layout_centerInParent="true">
+                        android:textSize="10sp"
+                        android:layout_marginLeft="50dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="#6C6B6B"
+                        android:text="email">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/email"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat"
+                        android:text="rajeevsachan2000@gmail.com">
                     </TextView>
                 </RelativeLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/contact_us"
-            android:layout_below="@id/save_button"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="20dp"
-            android:drawableEnd="@drawable/ic_support_contact"
-            android:focusable="false"
-            android:text="SUPPORT"
-            ></com.google.android.material.textfield.TextInputEditText>
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/call_phn"
-            android:layout_below="@+id/contact_us"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="Call us"
-            android:clickable="true"
-            ></com.google.android.material.textview.MaterialTextView>
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/email_contact"
-            android:layout_below="@+id/call_phn"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:text="Feedback"
-            android:clickable="true"
-            ></com.google.android.material.textview.MaterialTextView>
 
                 <RelativeLayout
-
-                    android:id="@+id/logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_below="@+id/email_contact">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:layout_centerInParent="true"
-                        android:id="@+id/logout_image"
-                        android:src="@drawable/ic_baseline_logout_24"
-                        ></de.hdodenhof.circleimageview.CircleImageView>
+                    android:id="@+id/rl_phone"
+                    android:layout_below="@id/rl_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/profile_cover_background">
+                    <ImageView
+                        android:id="@+id/phone_image"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/smartphone">
+                    </ImageView>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/logout_image"
-                        android:text="logout"
-                        ></TextView>
+                        android:textSize="10sp"
+                        android:layout_marginLeft="50dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="#6C6B6B"
+                        android:text="phone">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/phone"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat"
+                        android:text="9242304023">
+                    </TextView>
                 </RelativeLayout>
 
 
+                <RelativeLayout
+                    android:id="@+id/rl_call_us"
+                    android:layout_below="@id/rl_phone"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="10dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/profile_cover_background">
+                    <ImageView
+                        android:id="@+id/callus_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/contacting">
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/call_us"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Call Us">
+                    </TextView>
+                </RelativeLayout>
 
-    </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_feedback"
+                    android:layout_below="@id/rl_phone"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="10dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/profile_cover_background">
+                    <ImageView
+                        android:id="@+id/feedback_image"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:src="@drawable/feedback">
+                    </ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/feedback"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Feedback">
+                    </TextView>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
         </androidx.core.widget.NestedScrollView>
 
-
-
-
+        <RelativeLayout
+            android:id="@+id/rl_logout"
+            android:layout_below="@id/scrollView"
+            android:layout_width="wrap_content"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/profile_cover_background">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logout"
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/montserrat"
+                android:text="LOGOUT">
+            </TextView>
+        </RelativeLayout>
 
 
 
 
     </RelativeLayout>
+
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_dp"
         android:layout_width="90dp"
         android:layout_height="95dp"
         android:layout_marginTop="120dp"
-        android:layout_marginLeft="40dp"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/dp"
         ></de.hdodenhof.circleimageview.CircleImageView>
     <de.hdodenhof.circleimageview.CircleImageView
@@ -241,12 +290,10 @@
         android:layout_width="30dp"
         android:layout_height="35dp"
         android:layout_marginTop="180dp"
-        android:layout_marginLeft="105dp"
+        android:layout_alignRight="@+id/img_dp"
         android:src="@drawable/ic_edit"
         android:background="@drawable/circle"
         ></de.hdodenhof.circleimageview.CircleImageView>
-
-
 
 
 </RelativeLayout>

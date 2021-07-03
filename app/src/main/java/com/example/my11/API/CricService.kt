@@ -30,7 +30,6 @@ interface CricService {
     fun getCompletedMatch(@Query("unique_id") id:String) :Call<CompletedMatch>
 
     @GET("matches?apikey=$API_KEY")
-
     fun  matches(@Query("page") page:Int): Call<NewMatch>
 
 }
