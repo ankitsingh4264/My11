@@ -1,9 +1,11 @@
 package com.example.my11
 
 import android.annotation.TargetApi
+import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.util.Log
+import androidx.core.content.contentValuesOf
 import androidx.lifecycle.MutableLiveData
 import com.example.my11.API.CricService
 import com.example.my11.API.RetrofitInstance
@@ -15,11 +17,8 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.w3c.dom.Document
 import retrofit2.Call
@@ -193,29 +192,117 @@ class Repository {
         }
         return matches
     }
-    suspend fun getPredictedMatchesSuspend(): ArrayList<Predicted> {
+
+   @DelicateCoroutinesApi
+   suspend fun getPredictedMatchesSuspend(context:Context) {
         val email=auth.currentUser.email
-
-        val matches:ArrayList<Predicted> = ArrayList()
-
-        GlobalScope.launch (IO)
-        {
-            firestoreDB.collection("users").document(email).collection("Predicted").get().await()
-        }
-        firestoreDB.collection("users").document(email).collection("Predicted").get().addOnSuccessListener {
-            val temp:ArrayList<Predicted> = ArrayList()
-            for (data in it.documents){
+       var result=0;
+       val arr :ArrayList<Predicted> = ArrayList();
 
 
-                val k=data.toObject(Predicted::class.java)
 
-//                if (k!!.dateTimeGMT > Timestamp.now().toDate())   //todo
-                temp.add(k!!)
-            }
-//            matches.value=temp
-        }
-        return matches
+       val matches:ArrayList<Predicted> = ArrayList()
+       GlobalScope.launch(IO) {
+
+           val pmatches =
+               firestoreDB.collection("users").document(email).collection("Predicted").get()
+                   .await().documents
+           for (data in pmatches) {
+               val k = data.toObject(Predicted::class.java)
+               if (k != null) {
+                   matches.add(k)
+               }
+           }
+
+
+
+           for (mat in matches){
+
+               if (!mat.winnerTeam!!.isEmpty()){
+                   result++;
+                   arr.add(mat)
+                   continue
+                   //notification already received
+               }
+
+
+               val playres=retrofitCric.getCompletedMatch(mat.matchId)
+
+               playres.enqueue(object : retrofit2.Callback<CompletedMatch>{
+                   @TargetApi(Build.VERSION_CODES.N)
+                   override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
+                       val p: CompletedMatch? =response.body()
+                       result++;
+                       if(p!!.data!!.winner_team==null)
+                       {
+
+                       }
+                       else if (p.data!!.winner_team!!.isEmpty()){
+
+
+                       }else {
+                           //batting pts
+                           var totalPoints = 0;
+                           for (item in p.data.batting!!) {
+                               for (players in item!!.scores!!) {
+                                   val id = players!!.pid!!
+                                   val runs = players.R!!.toInt()
+                                   if (mat.predictedPlayers.containsKey(id)) {
+                                       mat.predictedPlayers[id] = runs
+                                       totalPoints += runs
+                                   }
+                               }
+
+                           }
+                           //bowling pts
+                           for (item in p.data.bowling!!) {
+                               for (players in item!!.scores!!) {
+                                   val id = players!!.pid!!
+                                   val wkts = players.W!!.toInt() * 50
+                                   if (mat.predictedPlayers.containsKey(id)) {
+                                       mat.predictedPlayers.put(
+                                           id,
+                                           mat.predictedPlayers.getOrDefault(id, 0) + wkts
+                                       )
+                                       totalPoints += wkts
+                                   }
+                               }
+
+                           }
+                           mat.winnerTeam = p.data.winner_team!!
+                           //settting total match points
+                           mat.points = totalPoints
+                           if (mat.predictedTeam==mat.winnerTeam) totalPoints+=100;
+
+
+                           Notification(context).createNotification(mat.team1 +" vs "+mat.team2,"Congrats you got $totalPoints points see you on leaderboard")
+
+
+                           firestoreDB.runBatch {
+                               //updting after fetching results
+                               firestoreDB.collection("users").document(auth.currentUser.email)
+                                   .collection("Predicted").document(mat.matchId).set(mat)
+                               firestoreDB.collection("users").document(auth.currentUser.email)
+                                   .update("totalPoints", FieldValue.increment(totalPoints.toLong()))
+                           }
+                       }
+                   }
+                   override fun onFailure(call: Call<CompletedMatch>, t: Throwable) {
+
+                   }
+               })
+           }
+
+
+
+
+
+       }
+
+
     }
+
+
     fun getCompletedMatches(list:ArrayList<Predicted>): MutableLiveData<ArrayList<Predicted>> {
         val res:MutableLiveData<ArrayList<Predicted>> = MutableLiveData()
         val arr :ArrayList<Predicted> = ArrayList();
@@ -295,6 +382,8 @@ class Repository {
                         mat.winnerTeam = p.data.winner_team!!
                         //settting total match points
                         mat.points = totalPoints
+                        if (mat.predictedTeam==mat.winnerTeam) totalPoints+=100;
+
 
                         firestoreDB.runBatch {
                             //updting after fetching results

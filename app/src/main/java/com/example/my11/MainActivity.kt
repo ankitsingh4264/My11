@@ -15,6 +15,8 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -22,6 +24,9 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -44,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
     }
 
     private fun setAlarm(){
@@ -62,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         val alarmStartTime = Calendar.getInstance()
         //val now = Calendar.getInstance()
         alarmStartTime[Calendar.HOUR_OF_DAY] = 23
-        alarmStartTime[Calendar.MINUTE] = 19
+        alarmStartTime[Calendar.MINUTE] = 33
         alarmStartTime[Calendar.SECOND] = 0
 //        if (now.after(alarmStartTime)) {
 ////            Log.d("Hey", "Added a day")
