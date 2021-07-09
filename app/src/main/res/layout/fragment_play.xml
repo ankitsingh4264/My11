@@ -4,93 +4,108 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardView"
-    android:layout_margin="5dp">
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        app:lottie_rawRes="@raw/cricket_progress"
-        app:lottie_autoPlay="true"
+    android:id="@+id/cardView">
 
-        app:lottie_loop="true"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            app:lottie_rawRes="@raw/cricket_progress"
+            app:lottie_autoPlay="true"
 
+            app:lottie_loop="true"/>
 
 
 
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="80dp"
         android:background="@drawable/one_sided_rounded_corner">
 
+<!--        <TextView-->
+<!--            android:id="@+id/team1"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:text="RCB"-->
+<!--            android:layout_toStartOf="@+id/versus"-->
+<!--            android:layout_marginEnd="40dp"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:fontFamily="@font/open_sans_bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="14sp">-->
+
+<!--        </TextView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/team2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_toEndOf="@+id/versus"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:text="CSK"-->
+
+<!--            android:fontFamily="@font/open_sans_bold"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="14sp">-->
+
+<!--        </TextView>-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/versus"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:background="@drawable/vs">-->
+<!--        </RelativeLayout>-->
         <TextView
-            android:id="@+id/team1"
+            android:id="@+id/text_choose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:text="RCB"
-            android:layout_toStartOf="@+id/versus"
-            android:layout_marginEnd="40dp"
-            android:textAllCaps="true"
-            android:fontFamily="@font/open_sans_bold"
-            android:textColor="@color/black"
-            android:textSize="14sp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/team2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/versus"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"
-            android:text="CSK"
-
-            android:fontFamily="@font/open_sans_bold"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="#000000"
-            android:textSize="14sp">
-
-        </TextView>
-
-        <RelativeLayout
-            android:id="@+id/versus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/vs">
-        </RelativeLayout>
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="choose 3 players"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="13sp">
+
+        </TextView>
        <params.com.stepprogressview.StepProgressView
            android:id="@+id/step_progress"
         android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_height="10dp"
            app:markers="1,2,3"
         app:totalProgress="3"
-        app:currentProgress="1"
-        app:markerWidth="4dp"
+        app:currentProgress="3"
+        app:markerWidth="2dp"
         app:textMargin="5dp"
         app:textSize="12sp"
         app:markerColor="@android:color/white"
-           android:layout_below="@+id/versus"
-           android:layout_marginTop="25dp"
+           android:layout_marginTop="10dp"
+           android:layout_below="@id/text_choose"
            android:layout_centerHorizontal="true"
-        app:progressColor="#006400"
+        app:progressColor="#730202"
            tools:ignore="SmallSp" />
+
+
 
 
     </RelativeLayout>
@@ -103,18 +118,20 @@
         android:layout_height="30dp"
         android:layout_below="@+id/main"
         android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="5dp"
         android:background="@drawable/faded_one_side">
 
         <TextView
-            android:id="@+id/name_team_1"
+            android:id="@+id/team1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:textAlignment="center"
-            android:fontFamily="@font/open_sans_semibold"
+            android:text="india"
+            android:fontFamily="@font/montserrat_bold"
             android:textAllCaps="true"
-            android:textColor="#000000"
-            android:textSize="18sp">
+            android:textColor="#FFFFFF"
+            android:textSize="16sp">
 
         </TextView>
     </RelativeLayout>
@@ -124,7 +141,7 @@
         android:layout_below="@+id/main_team_1"
         android:layout_width="match_parent"
         android:layout_marginBottom="5dp"
-        android:layout_height="30dp">
+        android:layout_height="20dp">
 
         <TextView
             android:id="@+id/name1"
@@ -133,7 +150,7 @@
             android:text="Name"
             android:textSize="15sp"
             android:gravity="center_vertical"
-            android:layout_marginLeft="45dp"></TextView>
+            android:layout_marginLeft="48dp"></TextView>
 
         <TextView
             android:id="@+id/batsr"
@@ -176,16 +193,18 @@
         android:layout_height="30dp"
         android:layout_below="@+id/details_of_team_1"
         android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="5dp"
         android:background="@drawable/faded_one_side">
         <TextView
-            android:id="@+id/name_team_2"
+            android:id="@+id/team2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAllCaps="true"
             android:textAlignment="center"
-            android:fontFamily="@font/open_sans_semibold"
-            android:textColor="#000000"
-            android:textSize="18sp">
+            android:text="india"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp">
 
         </TextView>
 
@@ -195,7 +214,7 @@
         android:layout_below="@+id/main_team_2"
         android:layout_width="match_parent"
         android:layout_marginBottom="5dp"
-        android:layout_height="30dp">
+        android:layout_height="20dp">
 
         <TextView
             android:id="@+id/name2"
@@ -205,7 +224,7 @@
             android:text="Name"
             android:textSize="15sp"
             android:gravity="center_vertical"
-            android:layout_marginLeft="45dp"></TextView>
+            android:layout_marginLeft="48dp"></TextView>
 
         <TextView
             android:id="@+id/batsr1"
@@ -241,7 +260,7 @@
     </RelativeLayout>
         <RelativeLayout
             android:layout_below="@+id/details_of_team_2"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -252,8 +271,6 @@
                 android:id="@+id/btn_fab"
                 app:icon="@drawable/all_rounder"
                 android:backgroundTint="@android:color/darker_gray"
-
-
                 android:text="PLAY"
                 ></com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
         </RelativeLayout>

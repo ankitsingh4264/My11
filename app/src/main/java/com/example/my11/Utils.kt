@@ -15,5 +15,6 @@ object  Utils {
     var user_name:String?=null
     var user_email:String?=null
     var user_dp:Uri?=null
-    var user_number:String?=null
+    lateinit var location: String
+    var trophies:String?=null
 }

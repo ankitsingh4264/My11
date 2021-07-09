@@ -16,7 +16,6 @@ class LeaderboardAdapter (val list: ArrayList<User>) : RecyclerView.Adapter<view
     }
 
     override fun getItemCount(): Int {
-        Log.i("lakki", "${list.size}")
         return list.size
     }
 

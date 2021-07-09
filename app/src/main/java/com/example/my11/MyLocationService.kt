@@ -27,6 +27,7 @@ class MyLocationService : BroadcastReceiver() {
                 if(result!=null)
                 {
                     val loc = result.lastLocation
+                    //Utils.location= loc.toString()
                     Utils.latitude = loc.latitude.toString()
                     Utils.longitude = loc.longitude.toString()
                     Log.i("Rajeev",Utils.latitude+" "+Utils.longitude)

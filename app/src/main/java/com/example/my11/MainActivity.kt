@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
 //        calendar[Calendar.SECOND] = 0
         val alarmStartTime = Calendar.getInstance()
         //val now = Calendar.getInstance()
-        alarmStartTime[Calendar.HOUR_OF_DAY] = 23
-        alarmStartTime[Calendar.MINUTE] = 33
+        alarmStartTime[Calendar.HOUR_OF_DAY] = 15
+        alarmStartTime[Calendar.MINUTE] = 59
         alarmStartTime[Calendar.SECOND] = 0
 //        if (now.after(alarmStartTime)) {
 ////            Log.d("Hey", "Added a day")

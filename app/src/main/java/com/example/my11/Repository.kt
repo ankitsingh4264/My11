@@ -193,7 +193,6 @@ class Repository {
         return matches
     }
 
-   @DelicateCoroutinesApi
    suspend fun getPredictedMatchesSuspend(context:Context) {
         val email=auth.currentUser.email
        var result=0;
@@ -202,7 +201,7 @@ class Repository {
 
 
        val matches:ArrayList<Predicted> = ArrayList()
-       GlobalScope.launch(IO) {
+       CoroutineScope(IO).launch {
 
            val pmatches =
                firestoreDB.collection("users").document(email).collection("Predicted").get()

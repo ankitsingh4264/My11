@@ -45,6 +45,12 @@ class TeamAdapter(val context: Context,var list:ArrayList<Players>,val clickList
                 itemView.name_of_player.text="N/A"
             else
                 itemView.name_of_player.text=currPlayer.name
+
+            if(currPlayer.playingRole.isNullOrBlank())
+                itemView.type_of_player.text="N/A"
+            else
+                itemView.type_of_player.text=currPlayer.playingRole
+
             itemView.bowlsr.text=bowlbsr
             itemView.batsr.text=bsr
             if (currPlayer.imageURL!=null){

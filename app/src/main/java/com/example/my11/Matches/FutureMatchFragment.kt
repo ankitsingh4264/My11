@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.API.RetrofitInstance
+import com.example.my11.Notification
 import com.example.my11.beans.Matche
 import com.example.my11.beans.NewMatch
 import com.example.my11.R
@@ -74,23 +75,31 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
         res.enqueue(object : retrofit2.Callback<NewMatch> {
             override fun onResponse(call: Call<NewMatch>, response: Response<NewMatch>) {
                 val result = response.body()?.matches
-                //Log.i("raj", result.toString())
-                Log.i("dad","i")
+//                Log.i("raj", result.toString())
+//                Log.i("dad","i")
 
 
-                for (i in result!!.indices) {
-                    //Log.i("lala", email)
-
-                    if (!result[i].matchStarted && result?.get(i).squad)
-                    {
-                        FutureMatch.add(result[i])
-                    }
-
-
-
+                if(result==null)
+                {
+                    context?.let { Notification(it).createNotification("404 Error" ,"Sorry we are currently under maintenance") }
                 }
-                val mAdapter = FutureMatchAdapter(FutureMatch,this@FutureMatchFragment)
-                recycler_future_match!!.adapter = mAdapter
+                else
+                {
+                    for (i in result!!.indices) {
+                        //Log.i("lala", email)
+
+                        if (!result[i].matchStarted && result?.get(i).squad)
+                        {
+                            FutureMatch.add(result[i])
+                        }
+
+
+
+                    }
+                    val mAdapter = FutureMatchAdapter(FutureMatch,this@FutureMatchFragment)
+                    recycler_future_match!!.adapter = mAdapter
+                }
+
             }
 
             override fun onFailure(call: Call<NewMatch>, t: Throwable) {

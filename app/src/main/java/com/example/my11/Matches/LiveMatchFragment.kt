@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.API.RetrofitInstance
+import com.example.my11.Notification
 import com.example.my11.beans.Matche
 import com.example.my11.beans.NewMatch
 import com.example.my11.R
@@ -48,14 +49,19 @@ class LiveMatchFragment : Fragment() {
             override fun onResponse(call: Call<NewMatch>, response: Response<NewMatch>) {
                 val result = response.body()?.matches
                 //Log.i("raj", result.toString())
-
-                for (i in result!!.indices) {
-                    if (result.get(i).matchStarted && result?.get(i).winner_team==null) {
-                        LiveMatch.add(result?.get(i))
-                    }
+                if(result==null)
+                {
+                    context?.let { Notification(it).createNotification("404 Error" ,"Sorry we are currently under maintenance") }
                 }
-                val mAdapter = LiveMatchAdapter(LiveMatch)
-                recycler_live_match.adapter = mAdapter
+                else {
+                    for (i in result!!.indices) {
+                        if (result.get(i).matchStarted && result?.get(i).winner_team == null) {
+                            LiveMatch.add(result?.get(i))
+                        }
+                    }
+                    val mAdapter = LiveMatchAdapter(LiveMatch)
+                    recycler_live_match.adapter = mAdapter
+                }
             }
 
             override fun onFailure(call: Call<NewMatch>, t: Throwable) {

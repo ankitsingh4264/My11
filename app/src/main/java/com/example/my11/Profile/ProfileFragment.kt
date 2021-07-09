@@ -2,21 +2,28 @@ package com.example.my11.Profile
 
 import android.Manifest
 import android.app.Activity
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.example.my11.MyLocationService
 import com.example.my11.R
 import com.example.my11.Utils
 import com.example.my11.Utils.latitude
@@ -24,6 +31,9 @@ import com.example.my11.Utils.longitude
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -31,15 +41,18 @@ import com.google.firebase.ktx.Firebase
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.fragment_profile.*
+import okhttp3.internal.Util
 import java.io.IOException
 import java.util.*
 
 
 const val STORAGE_REQUEST_CODE = 100
-
 var dpURI: Uri?=null
 
 class ProfileFragment : Fragment() {
@@ -59,6 +72,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        Utils.location="Delhi"
         profilemvvm= ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
         auth = Firebase.auth
@@ -68,27 +82,39 @@ class ProfileFragment : Fragment() {
                 .build()
         mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
 
-        val geocoder = Geocoder(context, Locale.getDefault())
-        var result: String? = null
-        try {
-            val addressList = geocoder.getFromLocation(latitude!!.toDouble(), longitude!!.toDouble(), 1)
-            if (addressList != null && addressList.size > 0) {
-                val address = addressList[0]
-                val sb = StringBuilder()
-                sb.append(address.locality).append(" , ")
-                sb.append(address.countryName)
-                result = sb.toString()
+        if(isLocationEnabled(requireContext()))
+        {
+            val geocoder = Geocoder(context, Locale.getDefault())
+            var result: String? = null
+            try {
+                val addressList = geocoder.getFromLocation(latitude!!.toDouble(), longitude!!.toDouble(), 1)
+                if (addressList != null && addressList.size > 0) {
+                    val address = addressList[0]
+                    val sb = StringBuilder()
+                    sb.append(address.locality).append(" , ")
+                    sb.append(address.countryName)
+                    result = sb.toString()
+                }
+            } catch (e: IOException) {
+                Log.e("Location Address Loader", "Unable connect to Geocoder", e)
             }
-        } catch (e: IOException) {
-            Log.e("Location Address Loader", "Unable connect to Geocoder", e)
+            location.text = result
+            Utils.location= result.toString()
+
+
+        }
+        else
+        {
+            location.text=Utils.location
         }
 
-        location.text = result
+
+
 
         email.text = Utils.user_email
-        txtname.setText(Utils.user_name)
         txtname.text = Utils.user_name
-
+        txtname.text = Utils.user_name
+        trophies.text= Utils.trophies
 //        Glide.with(this).load(Utils.user_dp)
 //            .into(cover_dp)
         Glide.with(this).load(Utils.user_dp)
@@ -110,6 +136,8 @@ class ProfileFragment : Fragment() {
                             .into(img_dp)
 
                     }
+                    Utils.trophies= it!!.totalPoints.toString()
+                    trophies.text=it!!.totalPoints.toString()
 //                    if (it.picture != null && it?.picture != "") {
 //
 //                        Glide.with(this).load(it?.picture)
@@ -161,11 +189,12 @@ class ProfileFragment : Fragment() {
     }
 
     private fun signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
 
-                    view?.findNavController()?.navigate(R.id.action_profileFragment_to_loginFragment)
-                })
+//        mGoogleSignInClient.signOut()
+//                .addOnCompleteListener(requireActivity(), OnCompleteListener<Void?> {
+//
+//                    view?.findNavController()?.navigate(R.id.action_profileFragment_to_loginFragment)
+//                })
     }
 
     private  fun takepermissions():Boolean{
@@ -231,6 +260,15 @@ class ProfileFragment : Fragment() {
             }
         }
     }
+
+    private fun isLocationEnabled(context: Context): Boolean {
+        val mode = Settings.Secure.getInt(
+            context.contentResolver, Settings.Secure.LOCATION_MODE,
+            Settings.Secure.LOCATION_MODE_OFF
+        )
+        return mode != Settings.Secure.LOCATION_MODE_OFF
+    }
+
 
 
 }
