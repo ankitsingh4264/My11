@@ -21,6 +21,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_future_match.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import retrofit2.Call
 import retrofit2.Response
 import kotlin.system.exitProcess
@@ -59,9 +63,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
         FutureMatch = ArrayList()
 
         recycler_future_match.layoutManager= LinearLayoutManager(context)
-
         getMatch()
-
         futuremvvm.getCurrentUser()
         futuremvvm.curruser.observe(requireActivity(), Observer {
             activity?.toolbar_pts!!.text=it.totalPoints.toString()
@@ -69,15 +71,14 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
 
     }
 
-    private fun getMatch() {
+    private  fun getMatch() {
 
 
         val res = RetrofitInstance.cricInstance.matches(1)
         res.enqueue(object : retrofit2.Callback<NewMatch> {
             override fun onResponse(call: Call<NewMatch>, response: Response<NewMatch>) {
                 val result = response.body()?.matches
-//                Log.i("raj", result.toString())
-//                Log.i("dad","i")
+
 
 
                 if(result==null)
@@ -89,7 +90,6 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
                 else
                 {
                     for (i in result!!.indices) {
-                        //Log.i("lala", email)
 
                         if (!result[i].matchStarted && result?.get(i).squad)
                         {

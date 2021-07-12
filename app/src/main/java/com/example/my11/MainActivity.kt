@@ -3,6 +3,7 @@ package com.example.my11
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
@@ -15,8 +16,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -24,9 +23,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.util.*
 
 
@@ -43,7 +39,18 @@ class MainActivity : AppCompatActivity() {
             getLoction()
 
             setupNav()
-        setAlarm()
+
+        // set alarm only once
+        val sh = getSharedPreferences("My11SharedPref", MODE_PRIVATE)
+        val set=sh.getBoolean("alarmSet",false);
+        if (!set){
+            setAlarm()
+            val myEdit=sh.edit();
+            myEdit.putBoolean("alarmSet",true)
+            myEdit.apply()
+
+        }
+
 
 
 
@@ -51,25 +58,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun setAlarm(){
 
-        //val timeTrigger=System.currentTimeMillis()+10*1000
+
 
         val intent = Intent(this,MyBroadCastReceiver::class.java)
         val pendingIntent= PendingIntent.getBroadcast(this,7,intent,0)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
 
-//        val calendar = Calendar.getInstance()
-//        calendar[Calendar.HOUR_OF_DAY] = 16
-//        calendar[Calendar.MINUTE] = 12
-//        calendar[Calendar.SECOND] = 0
         val alarmStartTime = Calendar.getInstance()
-        //val now = Calendar.getInstance()
-        alarmStartTime[Calendar.HOUR_OF_DAY] = 15
-        alarmStartTime[Calendar.MINUTE] = 59
+
+        alarmStartTime[Calendar.HOUR_OF_DAY] = 11
+        alarmStartTime[Calendar.MINUTE] = 30
         alarmStartTime[Calendar.SECOND] = 0
-//        if (now.after(alarmStartTime)) {
-////            Log.d("Hey", "Added a day")
-//            alarmStartTime.add(Calendar.DATE, 1)
-//        }
 
         alarmManager.setRepeating(AlarmManager.RTC,alarmStartTime.timeInMillis,AlarmManager.INTERVAL_DAY,pendingIntent)
 

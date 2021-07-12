@@ -35,9 +35,7 @@ class PlayedMatchFragment : Fragment() {
         playedMatchVIewModel.playedMatch.observe(requireActivity(), Observer {
 
             playedMatchVIewModel.getCompletedMatch(it!!)
-            Log.i("ankit",it.toString())
             playedMatchVIewModel.completedMatch.observe(requireActivity(), Observer {
-                       Log.i("predict",it.toString())
                 dapter= CompletedMatchAdapter(requireActivity(),it)
                 rv_completed.apply {
                     adapter=dapter
