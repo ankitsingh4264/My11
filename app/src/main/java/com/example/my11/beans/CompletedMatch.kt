@@ -25,8 +25,6 @@ data class TeamItem(
 data class ScoresItem(
 	val bowler: String? = null,
 	val R: String? = null,
-	@SerializedName("dismissal-by")
-    val dismissalBy: DismissalBy?=null,
 	@SerializedName("0s")
 	val jsonMember0s: Int? = null,
 	val nB: String? = null,
@@ -65,10 +63,7 @@ data class Provider(
 	val url: String? = null
 )
 
-data class DismissalBy(
-	val name: String? = null,
-	val pid: String? = null
-)
+
 
 data class BowlingItem(
 	val scores: List<ScoresItem?>? = null,

@@ -40,9 +40,9 @@ class CompletedMatchAdapter(val context:Context,var list: ArrayList<Predicted>) 
                    itemView.win_loss.text="Loss"
 
                }
-            var pts=0;
-            for (p in list[position].predictedPlayers!!.keys)
-                pts+=list[position].predictedPlayers!!.getOrDefault(p,0)
+            var pts=completedMatch.points;
+//            for (p in list[position].predictedPlayers!!.keys)
+//                pts+=list[position].predictedPlayers!!.getOrDefault(p,0)
 
             itemView.points.text="+$pts"
 
