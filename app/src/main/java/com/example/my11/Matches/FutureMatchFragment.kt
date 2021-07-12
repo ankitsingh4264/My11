@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_future_match.*
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.system.exitProcess
 
 
 class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
@@ -82,6 +83,8 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
                 if(result==null)
                 {
                     context?.let { Notification(it).createNotification("404 Error" ,"Sorry we are currently under maintenance") }
+                    activity?.finish();
+                    exitProcess(0);
                 }
                 else
                 {

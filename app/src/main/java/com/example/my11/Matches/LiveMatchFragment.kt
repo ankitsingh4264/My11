@@ -13,8 +13,11 @@ import com.example.my11.beans.Matche
 import com.example.my11.beans.NewMatch
 import com.example.my11.R
 import kotlinx.android.synthetic.main.fragment_l_ive_match.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.system.exitProcess
 
 
 class LiveMatchFragment : Fragment() {
@@ -43,7 +46,6 @@ class LiveMatchFragment : Fragment() {
 
     private fun getMatch() {
 
-
         val res = RetrofitInstance.cricInstance.matches(1)
         res.enqueue(object : retrofit2.Callback<NewMatch> {
             override fun onResponse(call: Call<NewMatch>, response: Response<NewMatch>) {
@@ -52,6 +54,8 @@ class LiveMatchFragment : Fragment() {
                 if(result==null)
                 {
                     context?.let { Notification(it).createNotification("404 Error" ,"Sorry we are currently under maintenance") }
+                    activity?.finish();
+                    exitProcess(0);
                 }
                 else {
                     for (i in result!!.indices) {

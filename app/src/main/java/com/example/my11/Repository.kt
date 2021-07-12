@@ -194,6 +194,7 @@ class Repository {
     }
 
    suspend fun getPredictedMatchesSuspend(context:Context) {
+       if(auth.currentUser==null)   return
         val email=auth.currentUser.email
        var result=0;
        val arr :ArrayList<Predicted> = ArrayList();

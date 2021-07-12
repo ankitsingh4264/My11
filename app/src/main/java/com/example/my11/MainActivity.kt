@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_My11)
         setContentView(R.layout.activity_main)
 
-        //setSupportActionBar(toolbar)
-
             getLoction()
 
             setupNav()
