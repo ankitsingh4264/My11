@@ -36,7 +36,8 @@ class HomeFragment : Fragment() {
         view_pager.adapter=pageAdapter
         pageAdapter.notifyDataSetChanged()
 
-
+        //to visible appBarlayout
+        activity?.appb!!.visibility=View.VISIBLE
 
            // selection on clicking of tab
         tab_layout.addOnTabSelectedListener(object : OnTabSelectedListener {

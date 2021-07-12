@@ -10,12 +10,13 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
+        android:background="@color/white"
         android:backgroundTintMode="multiply"
         android:backgroundTint="#FFFFFF">
 
 
         <ImageView
+            android:id="@+id/my11_logo"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:background="@drawable/logo_2"
@@ -26,22 +27,39 @@
         </ImageView>
 
 
+        <TextView
+            android:id="@+id/my11_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my11_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="MY11"
+            android:textColor="@color/theme_red"
+            android:textSize="38sp"
+            android:textStyle="bold">
+
+        </TextView>
+
         <RelativeLayout
             android:id="@+id/login_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_centerInParent="true"
-            android:fadingEdge="horizontal"
-            android:background="@drawable/button"
+            android:background="@drawable/login_button_design"
             android:layout_alignParentBottom="true">
 
             <ImageView
                 android:id="@+id/img_google"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginVertical="5dp"
                 android:layout_centerVertical="true"
-                android:layout_marginHorizontal="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/google_logo"></ImageView>
 
             <TextView
@@ -51,10 +69,11 @@
                 android:text="Sign in with Google"
                 android:layout_toRightOf="@+id/img_google"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/theme_red"
-                android:textSize="15sp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="16dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"
                 android:textStyle="bold">
 
             </TextView>

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -23,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
 
@@ -43,6 +43,7 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -50,6 +51,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        activity?.appb!!.visibility=View.GONE
         auth = Firebase.auth
         loginmvvm= ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 
