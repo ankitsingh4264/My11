@@ -89,7 +89,7 @@ class LeaderboardFragment : Fragment() {
             }
             name_third_player.text=it[2]!!.name
             points_third.text=it[2]!!.totalPoints.toString()
-
+//
             val mAdapter = LeaderboardAdapter(it)
             leaderboard_rv.apply {
                 adapter=mAdapter
