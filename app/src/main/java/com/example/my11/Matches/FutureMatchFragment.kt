@@ -21,6 +21,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_future_match.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_play.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -50,7 +52,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().bottomNav.visibility=View.VISIBLE
-
+        activity?.progress_circular!!.visibility=View.VISIBLE
         auth = Firebase.auth
 
         email=auth.currentUser.email.toString()
@@ -63,7 +65,10 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
         FutureMatch = ArrayList()
 
         recycler_future_match.layoutManager= LinearLayoutManager(context)
+
+
         getMatch()
+
         futuremvvm.getCurrentUser()
         futuremvvm.curruser.observe(requireActivity(), Observer {
             activity?.toolbar_pts!!.text=it.totalPoints.toString()
@@ -83,7 +88,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
 
                 if(result==null)
                 {
-                    context?.let { Notification(it).createNotification("404 Error" ,"Sorry we are currently under maintenance") }
+                    context?.let { Notification(it).createNotification("404 Error" ,"Sorry Cric Api is no longer in service") }
                     activity?.finish();
                     exitProcess(0);
                 }
@@ -101,6 +106,9 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
                     }
                     val mAdapter = FutureMatchAdapter(FutureMatch,this@FutureMatchFragment)
                     recycler_future_match!!.adapter = mAdapter
+
+
+                    activity?.progress_circular!!.visibility=View.GONE
                 }
 
             }

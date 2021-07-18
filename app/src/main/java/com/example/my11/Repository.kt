@@ -193,111 +193,111 @@ class Repository {
         return matches
     }
 
-   suspend fun getPredictedMatchesSuspend(context:Context) {
-       if(auth.currentUser==null)   return
+    suspend fun getPredictedMatchesSuspend(context:Context) {
+        if(auth.currentUser==null)   return
         val email=auth.currentUser.email
-       var result=0;
-       val arr :ArrayList<Predicted> = ArrayList();
+        var result=0;
+        val arr :ArrayList<Predicted> = ArrayList();
 
 
 
-       val matches:ArrayList<Predicted> = ArrayList()
-       CoroutineScope(IO).launch {
+        val matches:ArrayList<Predicted> = ArrayList()
+        CoroutineScope(IO).launch {
 
-           val pmatches =
-               firestoreDB.collection("users").document(email).collection("Predicted").get()
-                   .await().documents
-           for (data in pmatches) {
-               val k = data.toObject(Predicted::class.java)
-               if (k != null) {
-                   matches.add(k)
-               }
-           }
-
-
-
-           for (mat in matches){
-
-               if (!mat.winnerTeam!!.isEmpty()){
-                   result++;
-                   arr.add(mat)
-                   continue
-                   //notification already received
-               }
-
-
-               val playres=retrofitCric.getCompletedMatch(mat.matchId)
-
-               playres.enqueue(object : retrofit2.Callback<CompletedMatch>{
-                   @TargetApi(Build.VERSION_CODES.N)
-                   override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
-                       val p: CompletedMatch? =response.body()
-                       result++;
-                       if(p!!.data!!.winner_team==null)
-                       {
-
-                       }
-                       else if (p.data!!.winner_team!!.isEmpty()){
-
-
-                       }else {
-                           //batting pts
-                           var totalPoints = 0;
-                           for (item in p.data.batting!!) {
-                               for (players in item!!.scores!!) {
-                                   val id = players!!.pid!!
-                                   val runs = players.R!!.toInt()
-                                   if (mat.predictedPlayers.containsKey(id)) {
-                                       mat.predictedPlayers[id] = runs
-                                       totalPoints += runs
-                                   }
-                               }
-
-                           }
-                           //bowling pts
-                           for (item in p.data.bowling!!) {
-                               for (players in item!!.scores!!) {
-                                   val id = players!!.pid!!
-                                   val wkts = players.W!!.toInt() * 50
-                                   if (mat.predictedPlayers.containsKey(id)) {
-                                       mat.predictedPlayers.put(
-                                           id,
-                                           mat.predictedPlayers.getOrDefault(id, 0) + wkts
-                                       )
-                                       totalPoints += wkts
-                                   }
-                               }
-
-                           }
-                           mat.winnerTeam = p.data.winner_team!!
-                           //settting total match points
-                           mat.points = totalPoints
-                           if (mat.predictedTeam==mat.winnerTeam) totalPoints+=100;
-
-                           mat.points=totalPoints
-
-                           Notification(context).createNotification(mat.team1 +" vs "+mat.team2,"Congrats you got $totalPoints points see you on leaderboard")
-
-
-                           firestoreDB.runBatch {
-                               //updting after fetching results
-                               firestoreDB.collection("users").document(auth.currentUser.email)
-                                   .collection("Predicted").document(mat.matchId).set(mat)
-
-                           }
-                       }
-                   }
-                   override fun onFailure(call: Call<CompletedMatch>, t: Throwable) {
-
-                   }
-               })
-           }
+            val pmatches =
+                firestoreDB.collection("users").document(email).collection("Predicted").get()
+                    .await().documents
+            for (data in pmatches) {
+                val k = data.toObject(Predicted::class.java)
+                if (k != null) {
+                    matches.add(k)
+                }
+            }
 
 
 
+            for (mat in matches){
+
+                if (!mat.winnerTeam!!.isEmpty()){
+                    result++;
+                    arr.add(mat)
+                    continue
+                    //notification already received
+                }
 
 
-       }
+                val playres=retrofitCric.getCompletedMatch(mat.matchId)
+
+                playres.enqueue(object : retrofit2.Callback<CompletedMatch>{
+                    @TargetApi(Build.VERSION_CODES.N)
+                    override fun onResponse(call: Call<CompletedMatch>, response: Response<CompletedMatch>) {
+                        val p: CompletedMatch? =response.body()
+                        result++;
+                        if(p!!.data!!.winner_team==null)
+                        {
+
+                        }
+                        else if (p.data!!.winner_team!!.isEmpty()){
+
+
+                        }else {
+                            //batting pts
+                            var totalPoints = 0;
+                            for (item in p.data.batting!!) {
+                                for (players in item!!.scores!!) {
+                                    val id = players!!.pid!!
+                                    val runs = players.R!!.toInt()
+                                    if (mat.predictedPlayers.containsKey(id)) {
+                                        mat.predictedPlayers[id] = runs
+                                        totalPoints += runs
+                                    }
+                                }
+
+                            }
+                            //bowling pts
+                            for (item in p.data.bowling!!) {
+                                for (players in item!!.scores!!) {
+                                    val id = players!!.pid!!
+                                    val wkts = players.W!!.toInt() * 50
+                                    if (mat.predictedPlayers.containsKey(id)) {
+                                        mat.predictedPlayers.put(
+                                            id,
+                                            mat.predictedPlayers.getOrDefault(id, 0) + wkts
+                                        )
+                                        totalPoints += wkts
+                                    }
+                                }
+
+                            }
+                            mat.winnerTeam = p.data.winner_team!!
+                            //settting total match points
+                            mat.points = totalPoints
+                            if (mat.predictedTeam==mat.winnerTeam) totalPoints+=100;
+
+                            mat.points=totalPoints
+
+                            Notification(context).createNotification(mat.team1 +" vs "+mat.team2,"Congrats you got $totalPoints points see you on leaderboard")
+
+
+                            firestoreDB.runBatch {
+                                //updting after fetching results
+                                firestoreDB.collection("users").document(auth.currentUser.email)
+                                    .collection("Predicted").document(mat.matchId).set(mat)
+
+                            }
+                        }
+                    }
+                    override fun onFailure(call: Call<CompletedMatch>, t: Throwable) {
+
+                    }
+                })
+            }
+
+
+
+
+
+        }
 
 
     }

@@ -16,15 +16,15 @@
         android:background="#FFFFFF">
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true"
-            app:lottie_rawRes="@raw/cricket_progress"
-            app:lottie_autoPlay="true"
+<!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:id="@+id/animationView"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            app:lottie_rawRes="@raw/cricket_progress"-->
+<!--            app:lottie_autoPlay="true"-->
 
-            app:lottie_loop="true"/>
+<!--            app:lottie_loop="true"/>-->
 
 
 

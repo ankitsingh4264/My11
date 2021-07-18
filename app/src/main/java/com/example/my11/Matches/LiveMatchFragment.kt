@@ -12,6 +12,7 @@ import com.example.my11.Notification
 import com.example.my11.beans.Matche
 import com.example.my11.beans.NewMatch
 import com.example.my11.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_l_ive_match.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -34,8 +35,8 @@ class LiveMatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        LiveMatch = ArrayList()
+        activity?.progress_circular!!.visibility=View.VISIBLE
+        //LiveMatch = ArrayList()
         Log.i("raj","dada")
 
         recycler_live_match.layoutManager= LinearLayoutManager(context)
@@ -53,7 +54,7 @@ class LiveMatchFragment : Fragment() {
                 //Log.i("raj", result.toString())
                 if(result==null)
                 {
-                    context?.let { Notification(it).createNotification("404 Error" ,"Sorry we are currently under maintenance") }
+                    context?.let { Notification(it).createNotification("404 Error" ,"Sorry Cric Api is no longer in service") }
                     activity?.finish();
                     exitProcess(0);
                 }
@@ -66,6 +67,8 @@ class LiveMatchFragment : Fragment() {
                     val mAdapter = LiveMatchAdapter(LiveMatch)
                     recycler_live_match.adapter = mAdapter
                 }
+
+                activity?.progress_circular!!.visibility=View.GONE
             }
 
             override fun onFailure(call: Call<NewMatch>, t: Throwable) {
