@@ -46,6 +46,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import okhttp3.internal.Util
 import java.io.IOException
@@ -71,7 +72,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        activity?.progress_circular!!.visibility=View.VISIBLE
         Utils.location="Delhi"
         profilemvvm= ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
 
@@ -111,14 +112,7 @@ class ProfileFragment : Fragment() {
 
 
 
-        email.text = Utils.user_email
-        txtname.text = Utils.user_name
-        txtname.text = Utils.user_name
-        trophies.text= Utils.trophies
-//        Glide.with(this).load(Utils.user_dp)
-//            .into(cover_dp)
-        Glide.with(this).load(Utils.user_dp)
-            .into(img_dp)
+
         if(Utils.user_email==null || Utils.user_name==null || Utils.user_dp==null)
         {
             profilemvvm.getcurruser()
@@ -144,7 +138,19 @@ class ProfileFragment : Fragment() {
 //                            .into(cover_dp)
 //
 //                    }
+                    activity?.progress_circular!!.visibility=View.GONE
                 })
+        }
+        else{
+            email.text = Utils.user_email
+            txtname.text = Utils.user_name
+            txtname.text = Utils.user_name
+            trophies.text= Utils.trophies
+//        Glide.with(this).load(Utils.user_dp)
+//            .into(cover_dp)
+            Glide.with(this).load(Utils.user_dp)
+                .into(img_dp)
+            activity?.progress_circular!!.visibility=View.GONE
         }
 
 

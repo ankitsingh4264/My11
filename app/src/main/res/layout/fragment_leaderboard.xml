@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
         android:id="@+id/leaderboard_toolbar"
         android:background="#FFFFFF">
         <TextView
@@ -19,6 +19,7 @@
             android:text="LEADERBOARD"
             android:textAlignment="center"
             android:textColor="#930202"
+            android:textStyle="bold"
             android:fontFamily="@font/montserrat"
             android:textSize="20sp">
 
@@ -31,9 +32,215 @@
         android:layout_below="@id/leaderboard_toolbar"
         android:background="#FFFFFF">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:id="@+id/toppers">
+
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/first"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="21dp"
+                    android:id="@+id/crown"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/crown">
+                </ImageView>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_name"
+                    android:id="@+id/first_player"
+                    android:layout_centerHorizontal="true">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/name_first_player"
+                    android:text="Firstfirst"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16sp"
+                    android:textColor="#494949"
+                    android:maxLength="14"
+                    android:layout_below="@id/first_player">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/name_first_player"
+                    android:background="@drawable/trophy">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/points_first"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_first_player"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:layout_marginTop="2dp"
+                    android:text="1000"
+                    android:textColor="#494949"
+                    android:fontFamily="@font/open_sans_extrabold">
+
+                </TextView>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/second"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="21dp"
+                    android:text="2"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_centerHorizontal="true">
+                </TextView>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_name"
+                    android:layout_marginTop="25dp"
+                    android:id="@+id/second_player"
+                    android:layout_centerHorizontal="true">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/name_second_player"
+                    android:text="FirstfirstFirstfirst"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16sp"
+                    android:textColor="#494949"
+                    android:maxLength="14"
+                    android:layout_below="@id/second_player">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/name_second_player"
+                    android:background="@drawable/trophy">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/points_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_second_player"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:layout_marginTop="2dp"
+                    android:text="1000"
+                    android:textColor="#494949"
+                    android:fontFamily="@font/open_sans_extrabold">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/third"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="21dp"
+                    android:text="3"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_centerHorizontal="true">
+                </TextView>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/ic_name"
+                    android:id="@+id/third_player"
+                    android:layout_centerHorizontal="true">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/name_third_player"
+                    android:text="FirstfirstFirstfirst"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16sp"
+                    android:textColor="#494949"
+                    android:maxLength="14"
+                    android:layout_below="@id/third_player">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@id/name_third_player"
+                    android:background="@drawable/trophy">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/points_third"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_third_player"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:layout_marginTop="2dp"
+                    android:text="10000"
+                    android:textColor="#494949"
+                    android:fontFamily="@font/open_sans_extrabold">
+
+                </TextView>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/toppers"
+            android:layout_marginTop="10dp"
             android:id="@+id/leaderboard_rv">
         </androidx.recyclerview.widget.RecyclerView>
 

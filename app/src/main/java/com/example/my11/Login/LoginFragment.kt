@@ -52,6 +52,9 @@ class LoginFragment : Fragment() {
 
 
         activity?.appb!!.visibility=View.GONE
+
+        activity?.progress_circular!!.visibility=View.GONE
+
         auth = Firebase.auth
         loginmvvm= ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 

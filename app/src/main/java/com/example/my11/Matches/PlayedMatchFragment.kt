@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my11.Players.PlayViewModel
 import com.example.my11.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_played_match.*
 
 class PlayedMatchFragment : Fragment() {
@@ -27,6 +28,8 @@ class PlayedMatchFragment : Fragment() {
     private  lateinit var dapter: CompletedMatchAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.progress_circular!!.visibility=View.VISIBLE
 
         playedMatchVIewModel = ViewModelProvider(requireActivity()).get(PlayedMatchVIewModel::class.java)
 
@@ -47,6 +50,7 @@ class PlayedMatchFragment : Fragment() {
 
 
                 }
+                activity?.progress_circular!!.visibility=View.GONE
 
 
 

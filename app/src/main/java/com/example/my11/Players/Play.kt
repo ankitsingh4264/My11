@@ -47,6 +47,9 @@ class Play : Fragment(),TeamAdapter.onitemClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         c=0;
+
+        activity?.progress_circular!!.visibility=View.VISIBLE
+
 //        showProgress(true)
         team1Players=ArrayList();
         requireActivity().bottomNav.visibility=View.GONE
@@ -123,13 +126,12 @@ class Play : Fragment(),TeamAdapter.onitemClick {
                             "This match can't be Played.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        animationView.visibility=View.GONE
+                        activity?.progress_circular!!.visibility=View.GONE
                         view.findNavController().navigate(R.id.action_play_to_homeFragment)
                     } else if (team1Players.size != 0) {
 //                        Log.i("anki", team1Players.size.toString() + " " + team2Players.size)
 //                        Log.i("anki", team1Players.toString())
 //                        Log.i("anki", team2Players.toString())
-                        animationView.visibility=View.GONE
                         adapter1 = TeamAdapter(requireContext(), team1Players, this)
                         recycler_view_team_1.apply {
                             adapter = adapter1
@@ -150,6 +152,7 @@ class Play : Fragment(),TeamAdapter.onitemClick {
                         }
 
                     }
+                    activity?.progress_circular!!.visibility=View.GONE
 
 
                 })
@@ -159,6 +162,8 @@ class Play : Fragment(),TeamAdapter.onitemClick {
                     playClick();
 
                 }
+
+
 
             })
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="120dp"
     android:id="@+id/cardViewFutureMatch"
     android:layout_margin="5dp">
 
@@ -10,70 +10,71 @@
         android:layout_height="match_parent"
         android:background="@drawable/rounded_one_side">
 
-        <TextView
-            android:id="@+id/team1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/open_sans_bold"
-           android:gravity="center"
-            android:textColor="#000000"
-
-            android:textSize="15sp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/team2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/open_sans_bold"
-            android:textColor="#000000"
-            android:textSize="15sp">
-
-        </TextView>
-
         <RelativeLayout
-            android:id="@+id/versus"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="166dp"
-            android:layout_marginEnd="166dp"
-            android:layout_marginBottom="5dp">
-
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:id="@+id/upper">
             <TextView
-                android:id="@+id/win_loss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="win"
-                android:textSize="15sp"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textColor="#25ba38"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_centerInParent="true">
+                android:id="@+id/team1"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:gravity="center"
+                android:textColor="#000000"
+
+                android:textSize="15sp">
+
             </TextView>
 
+            <TextView
+                android:id="@+id/team2"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textColor="#000000"
+                android:textSize="15sp">
+
+            </TextView>
+
+            <RelativeLayout
+                android:id="@+id/versus"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/win_loss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="win"
+                    android:textSize="15sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="#25ba38"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_centerInParent="true">
+                </TextView>
+
+            </RelativeLayout>
         </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/team1"
-        android:layout_marginHorizontal="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_below="@+id/upper"
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginBottom="1dp"
         android:background="#E4E3E3">
 
         <TextView
@@ -84,7 +85,8 @@
             android:text="+200"
             android:paddingRight="8dp"
             android:textSize="18sp"
-            android:fontFamily="@font/montserrat"
+            android:paddingBottom="2dp"
+            android:fontFamily="@font/montserrat_bold"
             android:textAlignment="center"
             android:textColor="#25ba38">
         </TextView>
