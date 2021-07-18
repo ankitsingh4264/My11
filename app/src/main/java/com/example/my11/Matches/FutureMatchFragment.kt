@@ -54,7 +54,7 @@ class FutureMatchFragment : Fragment(),FutureMatchAdapter.onitemClick{
         requireActivity().bottomNav.visibility=View.VISIBLE
         activity?.progress_circular!!.visibility=View.VISIBLE
         auth = Firebase.auth
-
+//
         email=auth.currentUser.email.toString()
 
         futuremvvm= ViewModelProvider(requireActivity()).get(FutureMatchViewModel::class.java)
